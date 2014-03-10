@@ -1,0 +1,28 @@
+{# SWEN-261 Thomas Heissenberger #}
+{% load staticfiles %}
+<html>
+	<title>toolShare</title>
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}main.css"> <!--- simple template -->
+	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.4.2/pure-min.css"> <!-- css boilerplate -->
+	<div id="top">
+		
+		<div class="menu">
+			{% if user.is_authenticated %} 
+				<b style="margin-left: 2em; margin-right: 2em">Welcome {{ user.username }}!</b>
+				<!--- we include a menu here! -->
+
+
+			{% else %} <a href="{{ SITE_URL }}/accounts/registration/">Register</a> or <a href="{{ SITE_URL }}/accounts/login/">Sign-In</a>{% endif %}
+		</div>
+		<img src="{{ STATIC_URL }}logo.png" class="logo">
+	</div>
+	<h2 style="text-align: center; color: black;">Tools</h2>
+	<hr>
+	<div class="center"> <!-- start of main content -->
+		<a class="pure-button" href="{{ SITE_URL }}/accounts/profile/" style="margin-left: 2em; margin-right: 2em;">Browse</a>
+		<a class="pure-button" href="{{ SITE_URL }}/tools/" style="margin-left: 2em; margin-right: 2em;">Add</a>
+		<a class="pure-button" href="{{ SITE_URL }}/" style="margin-left: 2em; margin-right: 2em;">Remove</a>
+	</div>
+
+
+</html>
