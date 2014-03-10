@@ -1,0 +1,31 @@
+/*
+	Toolshare SWEN 261 
+	Team 1
+	Thomas Heissenberger
+	Rochester Institute of Technology
+*/
+
+body{
+	background-color: slategrey;
+
+}
+
+img.logo{
+	padding-top: 1em;
+	padding-left: 1em;
+	text-align: left;
+}
+
+div.menu{
+	text-align: right;
+	float: right;
+	width: 30%;
+	padding-top: .5em;
+	padding-right: .5em;
+	font-family: 'Tahoma';
+}
+
+b{
+	font-family: 'Tahoma';
+	color: white;
+}

@@ -13,13 +13,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
 
-MEDIA_ROOT = PROJECT_PATH + '/media/'
 
-TEMPLATE_DIRS = (
-    PROJECT_PATH + '/templates/'
-)
-
-STATIC_URL = '/static/'
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
@@ -82,15 +76,26 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.6/howto/static-files/
-
-STATIC_URL = '/static/'
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.request",
+    "django.core.context_processors.static",
     "django.contrib.auth.context_processors.auth"
+)
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+)
+TEMPLATE_DIRS = (
+    PROJECT_PATH + '/templates'
+)
+
+STATIC_URL = '/static/'
+
+import os
+SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
+
+STATICFILES_DIRS = (
+    os.path.join(SITE_ROOT, 'static'),
 )
