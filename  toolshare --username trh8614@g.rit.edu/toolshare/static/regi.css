@@ -1,0 +1,17 @@
+/*
+	Toolshare SWEN 261 
+	Team 1
+	Thomas Heissenberger
+	Rochester Institute of Technology
+
+	registration css style sheet
+*/
+body{
+	background-color: slategrey;
+}
+
+div.center{
+	width: 33%;
+	margin-left: auto;
+	margin-right: auto;
+}

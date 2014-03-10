@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+{% block content %}
+	<link rel="stylesheet" type="text/css" href="/static/regi.css">
+	<title>toolShare - Registration</title>
+	<div class="center">
+
+
+
+		{% if form.errors %} <p class="error">Sorry, that's not a valid username or password</p> {% endif %}
+
+		
+
+		<form class="pure-form pure-form-aligned" method="post" action=".">
+			{% csrf_token %}
+			{{ form.as_p }}
+
+			<button type="submit" class="pure-button pure-button-primary">Submit</button>
+		</form>
+
+	</div>
+
+{% endblock %}
+
+

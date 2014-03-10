@@ -25,6 +25,10 @@ div.menu{
 	font-family: 'Tahoma';
 }
 
+div.center{
+	margin-top: 5%;
+}
+
 b{
 	font-family: 'Tahoma';
 	color: white;

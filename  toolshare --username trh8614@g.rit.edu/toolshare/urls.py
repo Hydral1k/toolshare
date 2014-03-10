@@ -12,6 +12,8 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^registration/', 'toolshare.views.registration'),
     url(r'^$', 'toolshare.views.home'),
+    url(r'^accounts/', include('registration.backends.default.urls')),
 )
 urlpatterns += staticfiles_urlpatterns()

@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'registration'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -99,3 +100,5 @@ SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
 STATICFILES_DIRS = (
     os.path.join(SITE_ROOT, 'static'),
 )
+
+ACCOUNT_ACTIVIATION_DAYS = 7
