@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% comment %}
+	SWEN-261
+	Thomas Heissenberger
+
+	Activation page! Requires key!
+{% endcomment %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block content %}
+	<link rel="stylesheet" type="text/css" href="/static/regi.css">
+	<title>toolShare - Login</title>
+	<div class="center">
+		<form method="post" class="pure-form pure-form-aligned" action=".">
+			{% csrf_token %} 
+			{{ form.as_p }}
+
+			<input type="submit" value="{% trans 'Log in' %}" />
+			<input type="hidden" name="next" value="{{ next }}" />
+		</form>
+
+		<p>Not a member? <a href="{{ SITE_URL }}accounts/register">Register</a>!</p>
+
+	</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% load i18n %}
+
+Hi! 
+
+Please click the following link to activate your account on toolShare!
+
+http://{{site.domain}}/accounts/activate/{{ activation_key }}
+
+Link is valid for {{ expiration_days }} days.
+
+Regards,
+
+Team 1 'The D is Silent'

@@ -26,7 +26,12 @@ div.menu{
 }
 
 div.center{
+	margin-right: auto;
+	margin-left: auto;
 	margin-top: 5%;
+	text-align: center;
+	float: center;
+
 }
 
 b{

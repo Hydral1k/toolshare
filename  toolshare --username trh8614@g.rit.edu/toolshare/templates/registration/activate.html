@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% comment %} 
+	SWEN-261
+	Thomas Heissenberger
+
+	Activation page! Requires key!
+{% endcomment %}
+
+{% load staticfiles %}
+{% block content %}
+	
+	<link rel="stylesheet" type="text/css" href="/static/regi.css">
+	<title>toolShare - Registration</title>
+	{% if account %}
+
+		<p>{% trans "Account Activated!" %}</p>
+
+		<p><a href="{% url 'auth_login' %}">{% trans "Log in" %}</a></p>
+
+		{% else %}
+
+		<p>{% trans "Account Failed!" %}</p>
+
+	{% endif %}
+{% endblock %}

@@ -7,13 +7,14 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
+	(r'^accounts/', include('registration.backends.default.urls')),
     # Examples:
     # url(r'^$', 'toolshare.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^registration/', 'toolshare.views.registration'),
     url(r'^$', 'toolshare.views.home'),
-    url(r'^accounts/', include('registration.backends.default.urls')),
+    url(r'^accounts/profile', 'toolshare.views.profile')
+    
 )
 urlpatterns += staticfiles_urlpatterns()

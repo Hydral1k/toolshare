@@ -101,4 +101,16 @@ STATICFILES_DIRS = (
     os.path.join(SITE_ROOT, 'static'),
 )
 
-ACCOUNT_ACTIVIATION_DAYS = 7
+ACCOUNT_ACTIVATION_DAYS = 7
+
+"""
+    Basic Email PORT
+
+"""
+
+EMAIL_HOST = 'mail.hydral1k.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = False
+
+EMAIL_HOST_USER = 'toolshare@hydral1k.com'
+EMAIL_HOST_PASSWORD = 'simple1337'

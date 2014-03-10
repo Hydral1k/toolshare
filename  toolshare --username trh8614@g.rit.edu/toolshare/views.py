@@ -15,7 +15,6 @@ def home(request):
 		"" : "",  # other context 
 	}, context_instance = RequestContext(request))
 
-def register_success(request):
-    return render_to_response(
-    	'index.html', {"response": "Success!"}
-    )
+def profile(request):
+	return render_to_response('profile.html', 
+		{ "" : ""}, context_instance= RequestContext(request))

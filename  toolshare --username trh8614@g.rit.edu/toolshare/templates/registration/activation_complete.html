@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% comment %}
+	SWEN-261
+	Thomas Heissenberger
+
+	Activation page! Requires key!
+{% endcomment %}
+{% load staticfiles %}
+{% block content %}
+	
+	<link rel="stylesheet" type="text/css" href="/static/regi.css">
+	<title>toolShare - Registration</title>
+	<div class="center">
+		<h1 style="text-align:center;">Activation Completed!</h1>
+		<a href="{{ SITE_URL }}" style="text-align: center;display: block; margin: 0 auto;">Return Home</a>
+	</div>
+
+
+{% endblock %}
