@@ -14,7 +14,10 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'toolshare.views.home'),
     url(r'^accounts/profile', 'toolshare.views.profile'),
+    url(r'^tools/browse/', 'toolmanager.views.browse'),
+    url(r'^tools/add/', 'toolmanager.views.add'),
     url(r'^tools/', 'toolmanager.views.home')
+
     
 )
 urlpatterns += staticfiles_urlpatterns()

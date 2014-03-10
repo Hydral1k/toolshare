@@ -10,16 +10,6 @@
 {% block content %}
 	
 	<link rel="stylesheet" type="text/css" href="/static/regi.css">
-	<title>toolShare - Registration</title>
-	{% if account %}
-
-		<p>{% trans "Account Activated!" %}</p>
-
-		<p><a href="{% {{ SITE_URL }} %}">Log In</a></p>
-
-		{% else %}
-
-		<p>{% trans "Account Failed!" %}</p>
-
-	{% endif %}
+	<title>toolShare - Logout</title>
+	<p>Logged Out.</p>
 {% endblock %}

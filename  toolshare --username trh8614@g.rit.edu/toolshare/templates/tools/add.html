@@ -1,7 +1,7 @@
 {# SWEN-261 Thomas Heissenberger #}
 {% load staticfiles %}
 <html>
-	<title>toolShare</title>
+	<title>toolShare - Add Tool</title>
 	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}main.css"> <!--- simple template -->
 	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.4.2/pure-min.css"> <!-- css boilerplate -->
 	<div id="top">
@@ -15,7 +15,6 @@
 				<a class="pure-button" href="{{ SITE_URL }}/tools/">Tools</a>
 				<a class="pure-button" href="{{ SITE_URL }}/">Home</a>
 
-
 			{% else %} <a href="{{ SITE_URL }}/accounts/registration/">Register</a> or <a href="{{ SITE_URL }}/accounts/login/">Sign-In</a>{% endif %}
 		</div>
 		<img src="{{ STATIC_URL }}logo.png" class="logo">
@@ -26,7 +25,47 @@
 		<a class="pure-button" href="{{ SITE_URL }}/tools/browse/" style="margin-left: 2em; margin-right: 2em;">Browse</a>
 		<a class="pure-button" href="{{ SITE_URL }}/tools/add/" style="margin-left: 2em; margin-right: 2em;">Add</a>
 		<a class="pure-button" href="{{ SITE_URL }}/tools/search/" style="margin-left: 2em; margin-right: 2em;">Search</a>
+		<div class="list">
+			<form method="post" class="pure-form pure-form-stacked" action=".">
+				 <fieldset>
+				 	{% csrf_token %} 
+					{{form}}
+					<style scoped>
+
+						.button-success,
+						.button-error,
+						.button-warning,
+						.button-secondary {
+							color: white;
+							border-radius: 4px;
+							text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+						}
+
+						.button-success {
+							background: rgb(28, 184, 65); /* this is a green */
+						}
+
+						.button-error {
+							background: rgb(202, 60, 60); /* this is a maroon */
+						}
+
+						.button-warning {
+							background: rgb(223, 117, 20); /* this is an orange */
+						}
+
+						.button-secondary {
+							background: rgb(66, 184, 221); /* this is a light blue */
+						}
+
+					</style>
+					<button type="submit" class="button-success pure-button">Success Button</button>
+
+				</fieldset>
+			</form>
+		</div>
 	</div>
+
+
 
 
 </html>

@@ -31,6 +31,14 @@ div.center{
 	margin-top: 5%;
 	text-align: center;
 	float: center;
+}
+
+
+div.list{
+	width: 400px;
+	text-align: left;
+	margin: 0 auto;
+	margin-top: 2em;
 
 }
 
@@ -38,3 +46,4 @@ b{
 	font-family: 'Tahoma';
 	color: white;
 }
+
