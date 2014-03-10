@@ -1,0 +1,354 @@
+Revision: 10
+Author: trh8614@g.rit.edu
+Date: Monday, March 10, 2014 2:54:25 PM
+Message:
+Light Debugging Complete.
+
+First Initial Debugging phase underway
+
+Fix'd:
+- login register link doing a double redirection
+- overhaul'd registration return home link. 
+- sign out button added.
+- deleted toolshare/templates/tools/base.html (not needed)
+----
+Modified : / toolshare --username trh8614@g.rit.edu/db.sqlite3
+Modified : / toolshare --username trh8614@g.rit.edu/toolshare/static/regi.css
+Modified : / toolshare --username trh8614@g.rit.edu/toolshare/templates/index.html
+Modified : / toolshare --username trh8614@g.rit.edu/toolshare/templates/profile.html
+Modified : / toolshare --username trh8614@g.rit.edu/toolshare/templates/registration/login.html
+Modified : / toolshare --username trh8614@g.rit.edu/toolshare/templates/registration/logout.html
+Modified : / toolshare --username trh8614@g.rit.edu/toolshare/templates/registration/registration_complete.html
+Modified : / toolshare --username trh8614@g.rit.edu/toolshare/templates/registration/registration_form.html
+Modified : / toolshare --username trh8614@g.rit.edu/toolshare/templates/tools/add.html
+Deleted : / toolshare --username trh8614@g.rit.edu/toolshare/templates/tools/base.html
+Modified : / toolshare --username trh8614@g.rit.edu/toolshare/templates/tools/browse.html
+Modified : / toolshare --username trh8614@g.rit.edu/toolshare/templates/tools/index.html
+
+Revision: 9
+Author: trh8614@g.rit.edu
+Date: Monday, March 10, 2014 2:31:30 PM
+Message:
+Semi Final Commit for R1
+
+Database in working condition.
+Users can register/login/logout/admin page.
+Users can create tools, browse tools. 
+- Search function inert.
+- Tool details inert.
+
+Plan to refactor models/forms into forms.py
+Tools was split into separate app toolmanager which handles
+toolmanager/views.py, a dependency for toolshare/urls.py
+
+Rough testing shows in working condition.
+
+CSS slightly sloppy but basic and simple. 
+
+
+
+
+
+----
+Modified : / toolshare --username trh8614@g.rit.edu/db.sqlite3
+Added : / toolshare --username trh8614@g.rit.edu/toolmanager/forms.py
+Modified : / toolshare --username trh8614@g.rit.edu/toolmanager/views.py
+Modified : / toolshare --username trh8614@g.rit.edu/toolshare/static/main.css
+Modified : / toolshare --username trh8614@g.rit.edu/toolshare/static/regi.css
+Modified : / toolshare --username trh8614@g.rit.edu/toolshare/templates/index.html
+Modified : / toolshare --username trh8614@g.rit.edu/toolshare/templates/profile.html
+Modified : / toolshare --username trh8614@g.rit.edu/toolshare/templates/registration/activate.html
+Added : / toolshare --username trh8614@g.rit.edu/toolshare/templates/registration/logout.html
+Added : / toolshare --username trh8614@g.rit.edu/toolshare/templates/tools/add.html
+Added : / toolshare --username trh8614@g.rit.edu/toolshare/templates/tools/browse.html
+Modified : / toolshare --username trh8614@g.rit.edu/toolshare/templates/tools/index.html
+Modified : / toolshare --username trh8614@g.rit.edu/toolshare/urls.py
+
+Revision: 8
+Author: trh8614@g.rit.edu
+Date: Monday, March 10, 2014 1:01:51 PM
+Message:
+Starting models.py
+----
+Modified : / toolshare --username trh8614@g.rit.edu/db.sqlite3
+Added : / toolshare --username trh8614@g.rit.edu/readme.txt
+Modified : / toolshare --username trh8614@g.rit.edu/toolmanager/admin.py
+Modified : / toolshare --username trh8614@g.rit.edu/toolmanager/models.py
+Modified : / toolshare --username trh8614@g.rit.edu/toolmanager/views.py
+Added : / toolshare --username trh8614@g.rit.edu/toolshare/templates/tools
+Added : / toolshare --username trh8614@g.rit.edu/toolshare/templates/tools/base.html
+Added : / toolshare --username trh8614@g.rit.edu/toolshare/templates/tools/index.html
+Modified : / toolshare --username trh8614@g.rit.edu/toolshare/urls.py
+
+Revision: 7
+Author: trh8614@g.rit.edu
+Date: Monday, March 10, 2014 8:17:46 AM
+Message:
+Start of toolmanager sub django app.
+
+Used to:
+- organize tool models
+- contain views and info related to tools
+- manage dynamic content
+----
+Added : / toolshare --username trh8614@g.rit.edu/toolmanager
+Added : / toolshare --username trh8614@g.rit.edu/toolmanager/__init__.py
+Added : / toolshare --username trh8614@g.rit.edu/toolmanager/admin.py
+Added : / toolshare --username trh8614@g.rit.edu/toolmanager/models.py
+Added : / toolshare --username trh8614@g.rit.edu/toolmanager/tests.py
+Added : / toolshare --username trh8614@g.rit.edu/toolmanager/views.py
+Modified : / toolshare --username trh8614@g.rit.edu/toolshare/settings.py
+
+Revision: 6
+Author: trh8614@g.rit.edu
+Date: Monday, March 10, 2014 8:12:48 AM
+Message:
+Registration System Complete
+
+Rough version. 
+Displays email, first and last name, and username.
+
+Added:
+- RegistrationManager
+- profile.html
+- new menu system
+- email info in settings.py
+----
+Modified : / toolshare --username trh8614@g.rit.edu/db.sqlite3
+Modified : / toolshare --username trh8614@g.rit.edu/registration/models.py
+Modified : / toolshare --username trh8614@g.rit.edu/toolshare/settings.py
+Modified : / toolshare --username trh8614@g.rit.edu/toolshare/static/main.css
+Modified : / toolshare --username trh8614@g.rit.edu/toolshare/templates/base.html
+Modified : / toolshare --username trh8614@g.rit.edu/toolshare/templates/index.html
+Added : / toolshare --username trh8614@g.rit.edu/toolshare/templates/profile.html
+Added : / toolshare --username trh8614@g.rit.edu/toolshare/templates/registration/activate.html
+Added : / toolshare --username trh8614@g.rit.edu/toolshare/templates/registration/activation_complete.html
+Added : / toolshare --username trh8614@g.rit.edu/toolshare/templates/registration/activation_email.txt
+Added : / toolshare --username trh8614@g.rit.edu/toolshare/templates/registration/activation_email_subject.txt
+Added : / toolshare --username trh8614@g.rit.edu/toolshare/templates/registration/login.html
+Added : / toolshare --username trh8614@g.rit.edu/toolshare/templates/registration/registration_complete.html
+Modified : / toolshare --username trh8614@g.rit.edu/toolshare/templates/registration/registration_form.html
+Modified : / toolshare --username trh8614@g.rit.edu/toolshare/urls.py
+Modified : / toolshare --username trh8614@g.rit.edu/toolshare/views.py
+
+Revision: 5
+Author: trh8614@g.rit.edu
+Date: Monday, March 10, 2014 6:14:28 AM
+Message:
+In work on registration system. 
+
+Uses django-registration app. 
+
+Currently in works with registration_form.html
+
+view @ http://localhost:8000/accounts/register
+----
+Modified : / toolshare --username trh8614@g.rit.edu/db.sqlite3
+Added : / toolshare --username trh8614@g.rit.edu/registration
+Added : / toolshare --username trh8614@g.rit.edu/registration/__init__.py
+Added : / toolshare --username trh8614@g.rit.edu/registration/admin.py
+Added : / toolshare --username trh8614@g.rit.edu/registration/auth_urls.py
+Added : / toolshare --username trh8614@g.rit.edu/registration/backends
+Added : / toolshare --username trh8614@g.rit.edu/registration/backends/__init__.py
+Added : / toolshare --username trh8614@g.rit.edu/registration/backends/default
+Added : / toolshare --username trh8614@g.rit.edu/registration/backends/default/__init__.py
+Added : / toolshare --username trh8614@g.rit.edu/registration/backends/default/urls.py
+Added : / toolshare --username trh8614@g.rit.edu/registration/backends/default/views.py
+Added : / toolshare --username trh8614@g.rit.edu/registration/backends/simple
+Added : / toolshare --username trh8614@g.rit.edu/registration/backends/simple/__init__.py
+Added : / toolshare --username trh8614@g.rit.edu/registration/backends/simple/urls.py
+Added : / toolshare --username trh8614@g.rit.edu/registration/backends/simple/views.py
+Added : / toolshare --username trh8614@g.rit.edu/registration/forms.py
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/ar
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/ar/LC_MESSAGES
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/ar/LC_MESSAGES/django.mo
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/ar/LC_MESSAGES/django.po
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/bg
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/bg/LC_MESSAGES
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/bg/LC_MESSAGES/django.mo
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/bg/LC_MESSAGES/django.po
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/ca
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/ca/LC_MESSAGES
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/ca/LC_MESSAGES/django.mo
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/ca/LC_MESSAGES/django.po
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/cs
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/cs/LC_MESSAGES
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/cs/LC_MESSAGES/django.mo
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/cs/LC_MESSAGES/django.po
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/da
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/da/LC_MESSAGES
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/da/LC_MESSAGES/django.mo
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/da/LC_MESSAGES/django.po
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/de
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/de/LC_MESSAGES
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/de/LC_MESSAGES/django.mo
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/de/LC_MESSAGES/django.po
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/el
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/el/LC_MESSAGES
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/el/LC_MESSAGES/django.mo
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/el/LC_MESSAGES/django.po
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/en
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/en/LC_MESSAGES
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/en/LC_MESSAGES/django.mo
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/en/LC_MESSAGES/django.po
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/es
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/es/LC_MESSAGES
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/es/LC_MESSAGES/django.mo
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/es/LC_MESSAGES/django.po
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/es_AR
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/es_AR/LC_MESSAGES
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/es_AR/LC_MESSAGES/django.mo
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/es_AR/LC_MESSAGES/django.po
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/fa
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/fa/LC_MESSAGES
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/fa/LC_MESSAGES/django.mo
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/fa/LC_MESSAGES/django.po
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/fr
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/fr/LC_MESSAGES
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/fr/LC_MESSAGES/django.mo
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/fr/LC_MESSAGES/django.po
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/he
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/he/LC_MESSAGES
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/he/LC_MESSAGES/django.mo
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/he/LC_MESSAGES/django.po
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/hr
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/hr/LC_MESSAGES
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/hr/LC_MESSAGES/django.mo
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/hr/LC_MESSAGES/django.po
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/is
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/is/LC_MESSAGES
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/is/LC_MESSAGES/django.mo
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/is/LC_MESSAGES/django.po
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/it
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/it/LC_MESSAGES
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/it/LC_MESSAGES/django.mo
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/it/LC_MESSAGES/django.po
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/ja
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/ja/LC_MESSAGES
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/ja/LC_MESSAGES/django.mo
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/ja/LC_MESSAGES/django.po
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/ko
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/ko/LC_MESSAGES
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/ko/LC_MESSAGES/django.mo
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/ko/LC_MESSAGES/django.po
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/nb
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/nb/LC_MESSAGES
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/nb/LC_MESSAGES/django.mo
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/nb/LC_MESSAGES/django.po
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/nl
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/nl/LC_MESSAGES
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/nl/LC_MESSAGES/django.mo
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/nl/LC_MESSAGES/django.po
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/pl
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/pl/LC_MESSAGES
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/pl/LC_MESSAGES/django.mo
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/pl/LC_MESSAGES/django.po
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/pt
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/pt/LC_MESSAGES
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/pt/LC_MESSAGES/django.mo
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/pt/LC_MESSAGES/django.po
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/pt_BR
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/pt_BR/LC_MESSAGES
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/pt_BR/LC_MESSAGES/django.mo
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/pt_BR/LC_MESSAGES/django.po
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/ru
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/ru/LC_MESSAGES
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/ru/LC_MESSAGES/django.mo
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/ru/LC_MESSAGES/django.po
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/sl
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/sl/LC_MESSAGES
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/sl/LC_MESSAGES/django.mo
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/sl/LC_MESSAGES/django.po
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/sr
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/sr/LC_MESSAGES
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/sr/LC_MESSAGES/django.mo
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/sr/LC_MESSAGES/django.po
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/sv
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/sv/LC_MESSAGES
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/sv/LC_MESSAGES/django.mo
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/sv/LC_MESSAGES/django.po
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/tr_TR
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/tr_TR/LC_MESSAGES
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/tr_TR/LC_MESSAGES/django.mo
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/tr_TR/LC_MESSAGES/django.po
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/zh_CN
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/zh_CN/LC_MESSAGES
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/zh_CN/LC_MESSAGES/django.mo
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/zh_CN/LC_MESSAGES/django.po
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/zh_TW
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/zh_TW/LC_MESSAGES
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/zh_TW/LC_MESSAGES/django.mo
+Added : / toolshare --username trh8614@g.rit.edu/registration/locale/zh_TW/LC_MESSAGES/django.po
+Added : / toolshare --username trh8614@g.rit.edu/registration/management
+Added : / toolshare --username trh8614@g.rit.edu/registration/management/__init__.py
+Added : / toolshare --username trh8614@g.rit.edu/registration/management/commands
+Added : / toolshare --username trh8614@g.rit.edu/registration/management/commands/__init__.py
+Added : / toolshare --username trh8614@g.rit.edu/registration/management/commands/cleanupregistration.py
+Added : / toolshare --username trh8614@g.rit.edu/registration/models.py
+Added : / toolshare --username trh8614@g.rit.edu/registration/signals.py
+Added : / toolshare --username trh8614@g.rit.edu/registration/tests
+Added : / toolshare --username trh8614@g.rit.edu/registration/tests/__init__.py
+Added : / toolshare --username trh8614@g.rit.edu/registration/tests/default_backend.py
+Added : / toolshare --username trh8614@g.rit.edu/registration/tests/forms.py
+Added : / toolshare --username trh8614@g.rit.edu/registration/tests/models.py
+Added : / toolshare --username trh8614@g.rit.edu/registration/tests/simple_backend.py
+Added : / toolshare --username trh8614@g.rit.edu/registration/tests/urls.py
+Added : / toolshare --username trh8614@g.rit.edu/registration/urls.py
+Added : / toolshare --username trh8614@g.rit.edu/registration/views.py
+Modified : / toolshare --username trh8614@g.rit.edu/toolshare/settings.py
+Modified : / toolshare --username trh8614@g.rit.edu/toolshare/static/main.css
+Added : / toolshare --username trh8614@g.rit.edu/toolshare/static/regi.css
+Added : / toolshare --username trh8614@g.rit.edu/toolshare/templates/base.html
+Modified : / toolshare --username trh8614@g.rit.edu/toolshare/templates/index.html
+Added : / toolshare --username trh8614@g.rit.edu/toolshare/templates/registration
+Added : / toolshare --username trh8614@g.rit.edu/toolshare/templates/registration/registration_form.html
+Modified : / toolshare --username trh8614@g.rit.edu/toolshare/urls.py
+Modified : / toolshare --username trh8614@g.rit.edu/toolshare/views.py
+
+Revision: 4
+Author: trh8614@g.rit.edu
+Date: Monday, March 10, 2014 5:16:59 AM
+Message:
+Project underway. index.html under construction. 
+
+User system currently using Django underlayer framework.
+Access via http://localhost:8000/admin
+Main site http://localhost:8000/
+----
+Added : / toolshare --username trh8614@g.rit.edu/db.sqlite3
+Modified : / toolshare --username trh8614@g.rit.edu/toolshare/settings.py
+Added : / toolshare --username trh8614@g.rit.edu/toolshare/static
+Added : / toolshare --username trh8614@g.rit.edu/toolshare/static/Thumbs.db
+Added : / toolshare --username trh8614@g.rit.edu/toolshare/static/logo.png
+Added : / toolshare --username trh8614@g.rit.edu/toolshare/static/main.css
+Added : / toolshare --username trh8614@g.rit.edu/toolshare/templates/index.html
+Modified : / toolshare --username trh8614@g.rit.edu/toolshare/urls.py
+Added : / toolshare --username trh8614@g.rit.edu/toolshare/views.py
+
+Revision: 3
+Author: trh8614@g.rit.edu
+Date: Sunday, March 9, 2014 4:11:44 PM
+Message:
+Fixed basic view and etc.
+
+Run using demo server. In working condition.
+----
+Modified : / toolshare --username trh8614@g.rit.edu/toolshare/settings.py
+Added : / toolshare --username trh8614@g.rit.edu/toolshare/templates
+Modified : / toolshare --username trh8614@g.rit.edu/toolshare/urls.py
+
+Revision: 2
+Author: trh8614@g.rit.edu
+Date: Sunday, March 9, 2014 2:23:39 PM
+Message:
+base
+----
+Added : / toolshare --username trh8614@g.rit.edu
+Added : / toolshare --username trh8614@g.rit.edu/manage.py
+Added : / toolshare --username trh8614@g.rit.edu/toolshare
+Added : / toolshare --username trh8614@g.rit.edu/toolshare/__init__.py
+Added : / toolshare --username trh8614@g.rit.edu/toolshare/settings.py
+Added : / toolshare --username trh8614@g.rit.edu/toolshare/urls.py
+Added : / toolshare --username trh8614@g.rit.edu/toolshare/wsgi.py
+
