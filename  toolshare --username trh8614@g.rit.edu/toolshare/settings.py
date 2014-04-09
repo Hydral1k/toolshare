@@ -41,6 +41,8 @@ INSTALLED_APPS = (
     'toolmanager'
 )
 
+AUTH_PROFILE_MODULE = 'toolshare.UserProfile'
+
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
