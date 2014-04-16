@@ -19,6 +19,7 @@ from django.core.context_processors import csrf
 from django.forms import ModelForm
 from django.template import RequestContext
 from toolmanager.models import Tool
+from toolmanager.forms import ToolForm
 from django.forms.models import modelformset_factory
 
 """
@@ -65,9 +66,9 @@ def browse(request):
 """
 def add(request):
 
-	form = AddForm()
+	form = ToolForm()
 	if request.method == 'POST': #looks like the user is trying to save a new tool!
-		form = AddForm(request.POST)
+		form = ToolForm(request.POST)
 		if form.is_valid():
 			form.save()
 			d = dict( tool_list = Tool.objects.all() )

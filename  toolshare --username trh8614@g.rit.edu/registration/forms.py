@@ -29,8 +29,7 @@ class RegistrationForm(forms.Form):
     """
     required_css_class = 'required'
     
-    username = forms.RegexField(regex=r'^[\w.@+-]+$',
-                                max_length=30,
+    username = forms.CharField( max_length=30,
                                 label=_("Username"),
                                 error_messages={'invalid': _("This value may contain only letters, numbers and @/./+/-/_ characters.")})
     
