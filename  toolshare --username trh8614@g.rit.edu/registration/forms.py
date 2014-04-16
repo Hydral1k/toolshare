@@ -33,11 +33,23 @@ class RegistrationForm(forms.Form):
                                 max_length=30,
                                 label=_("Username"),
                                 error_messages={'invalid': _("This value may contain only letters, numbers and @/./+/-/_ characters.")})
-    email = forms.EmailField(label=_("E-mail"))
+    
+	email = forms.EmailField(label=_("E-mail"))
+	
     password1 = forms.CharField(widget=forms.PasswordInput,
                                 label=_("Password"))
+								
     password2 = forms.CharField(widget=forms.PasswordInput,
                                 label=_("Password (again)"))
+								
+	# ASK USER FOR PERSONAL INFO!
+	
+	firstname = forms.CharField(label=_("First name"))
+	lastname = forms.CharField(label=_("Last name"))
+								
+	# ASK THE USER FOR THEIR LOCAL ZIPCODE!							
+	zipcode = forms.IntegerField(widget=forms.IntegerInput, 
+								label=_("Your local Zipcode. (This is your region key!)"))	
     
     def clean_username(self):
         """
@@ -103,10 +115,7 @@ class RegistrationFormNoFreeEmail(RegistrationForm):
     override the attribute ``bad_domains``.
     
     """
-    bad_domains = ['aim.com', 'aol.com', 'email.com', 'gmail.com',
-                   'googlemail.com', 'hotmail.com', 'hushmail.com',
-                   'msn.com', 'mail.ru', 'mailinator.com', 'live.com',
-                   'yahoo.com']
+    bad_domains = ['notneeded.com']
     
     def clean_email(self):
         """

@@ -70,7 +70,7 @@ class RegistrationManager(models.Manager):
                 return user
         return False
     
-    def create_inactive_user(self, username, email, password,
+    def create_inactive_user(self, firstname, lastname, zipcode, username, email, password,
                              site, send_email=True):
         """
         Create a new, inactive ``User``, generate a
@@ -81,7 +81,7 @@ class RegistrationManager(models.Manager):
         user. To disable this, pass ``send_email=False``.
         
         """
-        new_user = User.objects.create_user(username, email, password)
+        new_user = User.objects.create_user(firstname, lastname, zipcode, username, email, password)
         new_user.is_active = False
         new_user.save()
 
@@ -190,7 +190,7 @@ class RegistrationProfile(models.Model):
         verbose_name = _('registration profile')
         verbose_name_plural = _('registration profiles')
     
-    def __unicode__(self):
+    def __str__(self):
         return "Registration information for %s" % self.user
     
     def activation_key_expired(self):
