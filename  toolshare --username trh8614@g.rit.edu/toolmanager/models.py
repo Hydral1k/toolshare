@@ -20,6 +20,12 @@ class Tool(models.Model):
 	quantity = models.IntegerField()
 	quantity_available = models.IntegerField()
 
+	def addquant():
+		quantity=quantity+1;
+
+	def  subquant():
+		quantity=quantity-1;
+
 """
 	Configures Django admin class to enable search for tool_name field.
 """

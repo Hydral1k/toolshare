@@ -26,7 +26,7 @@
 		<a class="pure-button" href="{{ SITE_URL }}/tools/add/" style="margin-left: 2em; margin-right: 2em;">Add</a>
 		<a class="pure-button" href="{{ SITE_URL }}/tools/search/" style="margin-left: 2em; margin-right: 2em;">Search</a>
 
-		<div class="list">
+		<div class="list"> 
 		
 			<table class="pure-table pure-table-horizontal">
 				<thead>
@@ -34,7 +34,9 @@
 						<th>Tool</th>
 						<th>Manufacture</th>
 						<th>Location</th>
-						<th>Quantity</th>
+						<th>Quantity Avalible</th>
+						<th>Add Item</th>
+						<th>Subtract Item</th>
 					</tr>
 				</thead>
 
@@ -45,6 +47,8 @@
 							<td>{{ tool.tool_manufacture }}</td>
 							<td>{{ tool.location }}</td>
 							<td><b style="color: blue">{{ tool.quantity_available }}</b>/<b style="color: green">{{ tool.quantity }}</b></td>
+							<td><a class="pure-button" href="{{ tool.addquant }}">+</a></td>
+							<td><a class="pure-button" href="{{ tool.subquant }}">-</a></td>
 						</tr>
 					{% endfor %}
 
