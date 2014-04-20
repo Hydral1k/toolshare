@@ -22,25 +22,7 @@ from toolmanager.models import Tool
 from toolmanager.forms import ToolForm
 from django.forms.models import modelformset_factory
 
-"""
-# Light class used as meta model for add view. Pipeslines database variables as in meta
-# and creates form
-# 
-# param: ModelForm (django)
-# return: none (class object)
-"""
-class AddForm(ModelForm):
-	class Meta:
-		model = Tool
-		fields = ['tool_name', 'tool_manufacture', 'location', 'tool_description', 'quantity', 'quantity_available']
 
-"""
-# Home view. Default view upon browsing website. Shows basic information
-# such as user info, and what's new. May add more return context.
-# 
-# param: request (DJANGO PAGE REQUEST)
-# return: page render response with empty context (should remove?)
-"""
 def home(request):
 	return render_to_response('tools/index.html', {
 		"" : "",  # other context 
@@ -74,7 +56,7 @@ def add(request):
 			d = dict( tool_list = Tool.objects.all() )
 			return render_to_response('tools/browse.html', d, context_instance = RequestContext(request))
 	else: #let's just create the new form for the user.
-		form = AddForm()
+		form = ToolForm()
 
 	return render_to_response('tools/add.html', {"form":form}, context_instance = RequestContext(request))
 
