@@ -36,7 +36,7 @@ class ToolForm( forms.Form ):
                                 label=_("Description"),
                                 error_messages={'invalid': _("Your input is too long.")})
 
-    quantity = forms.IntegerField(required=True, error_messages={'invalid': _("Your input is too long.")})
+    quantity = forms.IntegerField(required=True, error_messages={'invalid': _("A quantity must be entered.")})
 
     quantity_available = forms.IntegerField(error_messages={'invalid': _("A quantity must be entered.")},
                                    label = _("Quantity Available"),
