@@ -17,6 +17,10 @@
 		<a href="{{ SITE_URL }}"><img src="{{ STATIC_URL }}logo.png" class="logo"></a>
 	</div>
 
+	<div>
+		<img src="{{ STATIC_URL }}transparent.jpg" style="position: center;">
+	</div>
+
 	<div class="center"> <!-- start of main content -->
 		{% if user.is_authenticated %} 
 		<a class="pure-button" href="{{ SITE_URL }}/accounts/profile/">Profile</a>
