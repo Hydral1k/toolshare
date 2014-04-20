@@ -11,7 +11,6 @@ from toolmanager.models import Tool
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 
-
 """
     A tool form for adding a tool which can be rendered through HTML.
 
