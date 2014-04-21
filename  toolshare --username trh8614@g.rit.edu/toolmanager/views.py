@@ -12,6 +12,7 @@ data and context. Currently in light state.
 
 
 from django.shortcuts import render_to_response
+from django.shortcuts import redirect
 from django.http import HttpResponseRedirect
 from django.contrib import auth
 from django.template import RequestContext
@@ -37,6 +38,14 @@ def home(request):
 """
 def browse(request):
 	d = dict( tool_list = Tool.objects.all() )
+	for tools in d['tool_list']: 
+		print(tools)
+		
+		if tools.tool_name in request.user.extendedprofile.getList():
+
+			tools.canReturn = True
+		# let's find tools that are in our inventory.
+
 	return render_to_response('tools/browse.html', d, context_instance = RequestContext(request))
 
 """
@@ -63,7 +72,7 @@ def add(request):
 							 quantity_available=max(min(form.cleaned_data["quantity_available"], form.cleaned_data["quantity"]), 0))
 				tool.save()
 				d = dict( tool_list = Tool.objects.all() )
-				return render_to_response('tools/browse.html', d, context_instance = RequestContext(request))
+				return redirect('toolmanager.browse')
 		else: #let's just create the new form for the user.
 			form = ToolForm()
 
@@ -73,7 +82,15 @@ def add(request):
 					"error" : "Insufficient privaleges",  # other context 
 				}, context_instance = RequestContext(request))
 
-
+"""
+# Checks out item. Called via url dispatcher.
+#
+# @param request-data, tool-string
+# @return Commits change to tool object, reducing quantity and
+# adding value to respective user inventory.
+# Then redirects to browser page. Requires membership
+#
+"""
 def checkoutItem(request, tool):
 	unslug = tool.replace('-', ' ')
 	t  = Tool.objects.get(tool_name__iexact=unslug)
@@ -108,14 +125,22 @@ def checkoutItem(request, tool):
 		t.save()
 
 		d = dict( tool_list = Tool.objects.all() )
-		return render_to_response('tools/browse.html', d, context_instance = RequestContext(request))
+		return redirect('toolmanager.browse')
 	
 	else:
 		return render_to_response('error.html', {
 			"error" : "Insufficient privaleges",  # other context 
 		}, context_instance = RequestContext(request))
 
-
+"""
+# Returns item. Called via url dispatcher.
+#
+# @param request-data, tool-string
+# @return Commits change to tool object, adding quantity and
+# removing value from respective user inventory.
+# Then redirects to browser page. Requires membership
+#
+"""
 def returnItem(request, tool):
 	if request.user.is_authenticated():
 		unslug = tool.replace('-', ' ')
@@ -144,7 +169,7 @@ def returnItem(request, tool):
 		t.save()
 
 		d = dict( tool_list = Tool.objects.all() )
-		return render_to_response('tools/browse.html', d, context_instance = RequestContext(request))
+		return redirect('toolmanager.browse')
 	
 	else:
 		return render_to_response('error.html', {

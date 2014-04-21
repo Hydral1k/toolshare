@@ -39,6 +39,7 @@
 						<th>Add Item</th>
 						<th>Subtract Item</th>
 						<th></th>
+						<th></th>
 					</tr>
 				</thead>
 
@@ -52,6 +53,7 @@
 							<td><a class="pure-button" href="{{ tool.addquant }}">+</a></td>
 							<td><a class="pure-button" href="{{ tool.subquant }}">-</a></td>
 							<td><a class="pure-button" href="{{ SITE_URL }}/tools/checkout/{{tool.tool_name|slugify}}/">Checkout!</a></td>
+							<td>{% if tool.canReturn %}<a class="pure-button" href="{{ SITE_URL }}/tools/return/{{tool.tool_name|slugify}}/">Return!</a> {% endif %}</td>
 						</tr>
 					{% endfor %}
 
