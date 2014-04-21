@@ -47,7 +47,7 @@ class RegistrationForm(forms.Form):
     lastname = forms.CharField(label=_("Last name"))
                                 
     # ASK THE USER FOR THEIR LOCAL ZIPCODE!                            
-    zipcode = forms.IntegerField(label=_("Your local Zipcode. (This is your region key!)"))    
+    zipcode = forms.CharField(max_length=10, label=_("Zipcode"))    
     
     def clean_username(self):
         """

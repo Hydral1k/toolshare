@@ -38,10 +38,11 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'registration',
+    'userextra',
     'toolmanager'
 )
 
-AUTH_PROFILE_MODULE = "toolshare.UserProfile"
+AUTH_PROFILE_MODULE = "userextra.UserProfile"
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',

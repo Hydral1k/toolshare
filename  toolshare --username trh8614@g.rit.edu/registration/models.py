@@ -9,6 +9,7 @@ from django.db import models
 from django.db import transaction
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
+from userextra.models import ExtendedProfile
 
 try:
     from django.contrib.auth import get_user_model
@@ -89,9 +90,12 @@ class RegistrationManager(models.Manager):
         new_user.is_active = False
         new_user.zipcode = zipcode
         new_user.save()
-   
+        registration_profile = ExtendedProfile( user=new_user, zipcode=zipcode)
+        registration_profile.save()
 
         registration_profile = self.create_profile(new_user)
+        registration_profile.save()
+        
 
         if send_email:
             registration_profile.send_activation_email(site)
