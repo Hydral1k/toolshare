@@ -22,7 +22,7 @@ class ToolManagerFormTest(TestCase):
                                     'tool_description': 'a description',
                         			'quantity': '9',
                                     'quantity_available': '9'})
-		self.failIf(form.is_valid())
+		self.assertFalse(form.is_valid())
 		self.assertEqual(form.errors['tool_name'],
 		                 [u"Ensure this value has at most 64 characters (it has 138)."])
 
@@ -34,7 +34,7 @@ class ToolManagerFormTest(TestCase):
                                     'tool_description': 'a description',
                         			'quantity': '9',
                                     'quantity_available': '9'})
-		self.failIf(form.is_valid())
+		self.assertFalse(form.is_valid())
 		self.assertEqual(form.errors['tool_manufacture'],
 		                 [u"Ensure this value has at most 64 characters (it has 138)."])
 
@@ -46,7 +46,7 @@ class ToolManagerFormTest(TestCase):
                                     'tool_description': 'a description',
                         			'quantity': '9',
                                     'quantity_available': '9'})
-		self.failIf(form.is_valid())
+		self.assertFalse(form.is_valid())
 		self.assertEqual(form.errors['location'],
 		                 [u"Ensure this value has at most 32 characters (it has 138)."])
 
@@ -58,7 +58,7 @@ class ToolManagerFormTest(TestCase):
                                     'tool_description': 'i am going over the one hundred and twenty eight limit of characters, i am going over the one hundred and twenty eight limit of characters',
                         			'quantity': '9',
                                     'quantity_available': '9'})
-		self.failIf(form.is_valid())
+		self.assertFalse(form.is_valid())
 		self.assertEqual(form.errors['tool_description'],
 		                 [u"Ensure this value has at most 128 characters (it has 138)."])
 
@@ -70,7 +70,7 @@ class ToolManagerFormTest(TestCase):
                                     'tool_description': 'a description',
                         			'quantity': 'not a number',
                                     'quantity_available': '9'})
-		self.failIf(form.is_valid())
+		self.assertFalse(form.is_valid())
 		self.assertEqual(form.errors['quantity'],
 		                 [u"A quantity must be entered."])
 
@@ -82,7 +82,7 @@ class ToolManagerFormTest(TestCase):
                                     'tool_Description': 'a description',
                         			'quantity': '9',
                                     'quantity_available': 'not a number'})
-		self.failIf(form.is_valid())
+		self.assertFalse(form.is_valid())
 		self.assertEqual(form.errors['quantity_available'],
 		                 [u"A quantity must be entered."])
 
@@ -94,6 +94,6 @@ class ToolManagerFormTest(TestCase):
                                     'tool_Description': 'a description',
                         			'quantity': '9',
                                     'quantity_available': '9'})
-		self.failIf(form.is_valid())
+		self.assertFalse(form.is_valid())
 		self.assertEqual(form.errors['tool_name'],
 		                 [u"This field is required."])

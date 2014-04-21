@@ -37,16 +37,19 @@ def home(request):
 # return: page render with context (Tool object dictionary )
 """
 def browse(request):
-	d = dict( tool_list = Tool.objects.all() )
-	for tools in d['tool_list']: 
-		print(tools)
+	if request.user.is_authenticated():
+		d = dict( tool_list = Tool.objects.all() )
+		for tools in d['tool_list']: 
+			print(tools)
 		
-		if tools.tool_name in request.user.extendedprofile.getList():
+			if tools.tool_name in request.user.extendedprofile.getList():
 
-			tools.canReturn = True
-		# let's find tools that are in our inventory.
+				tools.canReturn = True
+			# let's find tools that are in our inventory.
 
-	return render_to_response('tools/browse.html', d, context_instance = RequestContext(request))
+		return render_to_response('tools/browse.html', d, context_instance = RequestContext(request))
+	else:
+		return render_to_response('error.html', {"error" : "Insufficient privileges"}, context_instance = RequestContext(request))
 
 """
 # Add view. Used to to render form which allows used to add a tool
@@ -79,7 +82,7 @@ def add(request):
 		return render_to_response('tools/add.html', {"form":form}, context_instance = RequestContext(request))
 	else:
 		return render_to_response('error.html', {
-					"error" : "Insufficient privaleges",  # other context 
+					"error" : "Insufficient privileges",  # other context 
 				}, context_instance = RequestContext(request))
 
 """
@@ -129,7 +132,7 @@ def checkoutItem(request, tool):
 	
 	else:
 		return render_to_response('error.html', {
-			"error" : "Insufficient privaleges",  # other context 
+			"error" : "Insufficient privileges",  # other context 
 		}, context_instance = RequestContext(request))
 
 """
@@ -173,7 +176,7 @@ def returnItem(request, tool):
 	
 	else:
 		return render_to_response('error.html', {
-			"error" : "Insufficient privaleges",  # other context 
+			"error" : "Insufficient privileges",  # other context 
 		}, context_instance = RequestContext(request))
 
 
