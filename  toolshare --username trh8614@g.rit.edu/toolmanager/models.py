@@ -6,6 +6,7 @@ Master models page for tool object / class
 """
 from django.db import models
 from django.contrib import admin
+from django.utils.text import slugify
 """
 	Using Django Database class style. 
 	Configures database to save Tool objects, with specific attributes listed below
@@ -23,8 +24,14 @@ class Tool(models.Model):
 	def addquant():
 		quantity=quantity+1;
 
-	def  subquant():
+	def subquant():
 		quantity=quantity-1;
+
+	# slug up the name
+	def getimgname():
+		return slugify(self.tool_name.lower())
+			
+
 
 """
 	Configures Django admin class to enable search for tool_name field.
