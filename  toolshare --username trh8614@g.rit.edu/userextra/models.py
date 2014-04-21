@@ -15,14 +15,18 @@ import json # we use this to package to sql3
 
 """
 class ExtendedProfile(models.Model):
-    user = models.ForeignKey(User, unique=True)
+    user = models.OneToOneField(User, unique=True)
     zipcode = models.CharField(max_length=10, blank=True)
     inventory = models.CharField(max_length=999999) #dataslot for json!
 
-    def storeList( data ):
+    def storeList( self, data ):
     	self.inventory = json.dumps(data)
 
-    def getList( data ):
-    	return json.loads(self.inventory)
+    def getList( self ):
+        if self.inventory == "": #no data, fresh inventory.
+            return ""
+        else:
+            return json.loads(self.inventory)
+    REQUIRED_FIELDS = ['zipcode']
 
    

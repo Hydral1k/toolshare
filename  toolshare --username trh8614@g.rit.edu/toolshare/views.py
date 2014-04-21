@@ -16,5 +16,10 @@ def home(request):
 	}, context_instance = RequestContext(request))
 
 def profile(request):
-	return render_to_response('profile.html', 
-		{ "" : ""}, context_instance= RequestContext(request))
+	if request.user.is_authenticated():
+		return render_to_response('profile.html', 
+			{ "" : ""}, context_instance= RequestContext(request))
+	else:
+		return render_to_response('error.html', {
+			"error" : "Insufficient privaleges",  # other context 
+		}, context_instance = RequestContext(request))

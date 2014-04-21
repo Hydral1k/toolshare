@@ -41,9 +41,9 @@ INSTALLED_APPS = (
     'userextra',
     'toolmanager'
 )
+#AUTH_USER_MODEL = "userextra.ExtendedProfile"
 
-AUTH_PROFILE_MODULE = "userextra.UserProfile"
-
+AUTH_PROFILE_MODULE = "userextra.ExtendedProfile"
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

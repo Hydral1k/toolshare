@@ -21,6 +21,7 @@ from django.template import RequestContext
 from toolmanager.models import Tool
 from toolmanager.forms import ToolForm
 from django.forms.models import modelformset_factory
+from django.contrib.auth import get_user_model
 
 
 def home(request):
@@ -47,17 +48,106 @@ def browse(request):
 # return: page render with context (form context OR  with tool library dictionary )
 """
 def add(request):
+	if request.user.is_authenticated():
 
-	form = ToolForm()
-	if request.method == 'POST': #looks like the user is trying to save a new tool!
-		form = ToolForm(request.POST)
-		if form.is_valid():
-			form.save()
-			d = dict( tool_list = Tool.objects.all() )
-			return render_to_response('tools/browse.html', d, context_instance = RequestContext(request))
-	else: #let's just create the new form for the user.
 		form = ToolForm()
+		if request.method == 'POST': #looks like the user is trying to save a new tool!
+			form = ToolForm(request.POST)
+			if form.is_valid():
+				if Tool.objects.filter(tool_name=form.cleaned_data["tool_name"]).exists():
+					return render_to_response('error.html', {
+						"error" : "Duplicates detected in the database! Please only add one!",  # other context 
+					}, context_instance = RequestContext(request))
 
-	return render_to_response('tools/add.html', {"form":form}, context_instance = RequestContext(request))
+				tool = Tool( tool_name=form.cleaned_data["tool_name"], tool_manufacture=form.cleaned_data["tool_manufacture"], location=form.cleaned_data["location"], tool_description=form.cleaned_data["tool_description"], quantity=form.cleaned_data["quantity"],
+							 quantity_available=max(min(form.cleaned_data["quantity_available"], form.cleaned_data["quantity"]), 0))
+				tool.save()
+				d = dict( tool_list = Tool.objects.all() )
+				return render_to_response('tools/browse.html', d, context_instance = RequestContext(request))
+		else: #let's just create the new form for the user.
+			form = ToolForm()
+
+		return render_to_response('tools/add.html', {"form":form}, context_instance = RequestContext(request))
+	else:
+		return render_to_response('error.html', {
+					"error" : "Insufficient privaleges",  # other context 
+				}, context_instance = RequestContext(request))
+
+
+def checkoutItem(request, tool):
+	unslug = tool.replace('-', ' ')
+	t  = Tool.objects.get(tool_name__iexact=unslug)
+
+	if t.quantity_available == 0:
+
+		return render_to_response('error.html', {
+			"error" : "Out of stock!",  # other context 
+		}, context_instance = RequestContext(request))
+
+	elif request.user.is_authenticated() :
+
+		#let's fetch their json list.
+		d = request.user.extendedprofile.getList()
+		
+		if type(d) is dict: # not empty dictionary!
+			print("not empty")
+			if t.tool_name in d: #tool already in dictionary
+				d[t.tool_name] += 1 #we check out another
+			else:
+				d[t.tool_name] = 1
+
+		else: #empty dictionary!
+			print("empty")
+			d = {}
+			d[t.tool_name] = 1
+
+		# dict -> JSON -> django -> sql3
+
+		request.user.extendedprofile.storeList(d)
+		request.user.extendedprofile.save()
+		t.checkoutItem()
+		t.save()
+
+		d = dict( tool_list = Tool.objects.all() )
+		return render_to_response('tools/browse.html', d, context_instance = RequestContext(request))
+	
+	else:
+		return render_to_response('error.html', {
+			"error" : "Insufficient privaleges",  # other context 
+		}, context_instance = RequestContext(request))
+
+
+def returnItem(request, tool):
+	if request.user.is_authenticated():
+		unslug = tool.replace('-', ' ')
+		t  = Tool.objects.get(tool_name__iexact=unslug)
+		#let's fetch their json list.
+		d = request.user.extendedprofile.getList()
+		if type(d) is dict: # not empty dictionary!
+			if t.tool_name in d: #tool already in dictionary
+				if d[t.tool_name] > 1:
+					d[t.tool_name] = d[t.tool_name] - 1
+				else:
+					d.pop(t.tool_name, None)
+
+		else: #empty dictionary!
+			return render_to_response('error.html', {
+			"error" : "Django issue with return view. Please report.",  # other context 
+		}, context_instance = RequestContext(request))
+
+		# dict -> JSON -> django -> sql3
+
+		request.user.get_profile().storeList(d)
+		t.returnItem()
+		t.save()
+
+		d = dict( tool_list = Tool.objects.all() )
+		return render_to_response('tools/browse.html', d, context_instance = RequestContext(request))
+	
+	else:
+		return render_to_response('error.html', {
+			"error" : "Insufficient privaleges",  # other context 
+		}, context_instance = RequestContext(request))
+
 
 

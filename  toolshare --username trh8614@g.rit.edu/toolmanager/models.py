@@ -3,6 +3,9 @@ SWEN-261 toolshare
 Group 1 'The D is Silent'
 
 Master models page for tool object / class
+
+	Thomas Heissenberger
+	Eric Tevelson
 """
 from django.db import models
 from django.contrib import admin
@@ -27,7 +30,14 @@ class Tool(models.Model):
 	def subquant():
 		quantity=quantity-1;
 
+	def checkoutItem(self):
+		self.quantity_available = min(self.quantity, max(0, self.quantity_available - 1))
+
+	def returnItem(self):
+		self.quantity_available = min(self.quantity, max(0, self.quantity_available + 1))
+
 	# slug up the name
+	# MAY BE SCRAPPED R2 REFACTOR
 	def getimgname():
 		return slugify(self.tool_name.lower())
 			
