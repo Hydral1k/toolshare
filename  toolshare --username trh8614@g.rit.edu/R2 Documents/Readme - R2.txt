@@ -14,14 +14,14 @@ Contents of R2 Documents folder:
 - This Readme.txt
 - TetsPlanTracker.xlsx
 - R2 Requirements.docx
-- Missing: R2 Test Plan.docx
+- R2 Test Plan Document.docx
 
 
 Requirements:
 - Django 1.6+
 - Python 3.3+
 - A brain and an IQ of above 80.
-- Internet Explorer 9+, Chrome, Mozilla, Safari (Versioning not fully tested)
+- Chrome, Firefox
 
 
 Installation: 
