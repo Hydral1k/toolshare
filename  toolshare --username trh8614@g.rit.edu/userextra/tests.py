@@ -35,4 +35,4 @@ class UserExtraTester(TestCase):
 		user_info = {'username': 'alice','password': 'swordfish','email': 'alice@example.com'}
 		u = User.objects.create_user(**user_info)
 		random = ExtendedProfile( u, zipcode="12345", inventory='["foo", {"bar":["baz", null, 1.0, 2]}]' )
-		self.assertEqual(random.getList(), [u'foo', {u'bar': [u'baz', None, 1.0, 2]}])
+		self.assertEqual(random.getList(), ['foo', {'bar': ['baz', None, 1.0, 2]}])

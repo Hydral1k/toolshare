@@ -24,7 +24,7 @@ class ToolManagerFormTest(TestCase):
                                     'quantity_available': '9'})
 		self.assertFalse(form.is_valid())
 		self.assertEqual(form.errors['tool_name'],
-		                 [u"Ensure this value has at most 64 characters (it has 138)."])
+		                 ["Ensure this value has at most 64 characters (it has 138)."])
 
 #test lmanufacture length
 	def test_tool_add_manufacture(self):
@@ -36,7 +36,7 @@ class ToolManagerFormTest(TestCase):
                                     'quantity_available': '9'})
 		self.assertFalse(form.is_valid())
 		self.assertEqual(form.errors['tool_manufacture'],
-		                 [u"Ensure this value has at most 64 characters (it has 138)."])
+		                 ["Ensure this value has at most 64 characters (it has 138)."])
 
 #test location length
 	def test_tool_add_location(self):
@@ -48,7 +48,7 @@ class ToolManagerFormTest(TestCase):
                                     'quantity_available': '9'})
 		self.assertFalse(form.is_valid())
 		self.assertEqual(form.errors['location'],
-		                 [u"Ensure this value has at most 32 characters (it has 138)."])
+		                 ["Ensure this value has at most 32 characters (it has 138)."])
 
 #test description length
 	def test_tool_add_description(self):
@@ -60,7 +60,7 @@ class ToolManagerFormTest(TestCase):
                                     'quantity_available': '9'})
 		self.assertFalse(form.is_valid())
 		self.assertEqual(form.errors['tool_description'],
-		                 [u"Ensure this value has at most 128 characters (it has 138)."])
+		                 ["Ensure this value has at most 128 characters (it has 138)."])
 
 #test quatity
 	def test_tool_add_quantity(self):
@@ -72,7 +72,7 @@ class ToolManagerFormTest(TestCase):
                                     'quantity_available': '9'})
 		self.assertFalse(form.is_valid())
 		self.assertEqual(form.errors['quantity'],
-		                 [u"A quantity must be entered."])
+		                 ["A quantity must be entered."])
 
 #test quantity avalailable
 	def test_tool_add_quantity_available(self):
@@ -84,7 +84,7 @@ class ToolManagerFormTest(TestCase):
                                     'quantity_available': 'not a number'})
 		self.assertFalse(form.is_valid())
 		self.assertEqual(form.errors['quantity_available'],
-		                 [u"A quantity must be entered."])
+		                 ["A quantity must be entered."])
 
 #test blank space
 	def test_tool_add_blank(self):
@@ -96,4 +96,4 @@ class ToolManagerFormTest(TestCase):
                                     'quantity_available': '9'})
 		self.assertFalse(form.is_valid())
 		self.assertEqual(form.errors['tool_name'],
-		                 [u"This field is required."])
+		                 ["This field is required."])
