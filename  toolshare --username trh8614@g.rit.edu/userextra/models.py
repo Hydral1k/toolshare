@@ -17,7 +17,7 @@ import json # we use this to package to sql3
 class ExtendedProfile(models.Model):
     user = models.OneToOneField(User, unique=True)
     zipcode = models.CharField(max_length=10, blank=True)
-    inventory = models.CharField(max_length=999999) #dataslot for json!
+    inventory = models.CharField(max_length=999999, editable=False) #dataslot for json!
 
     def storeList( self, data ):
     	self.inventory = json.dumps(data)

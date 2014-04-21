@@ -25,10 +25,11 @@
 		<a class="pure-button" href="{{ SITE_URL }}/tools/browse/" style="margin-left: 2em; margin-right: 2em;">Browse</a>
 		<a class="pure-button" href="{{ SITE_URL }}/tools/add/" style="margin-left: 2em; margin-right: 2em;">Add</a>
 		<a class="pure-button" href="{{ SITE_URL }}/tools/search/" style="margin-left: 2em; margin-right: 2em;">Search</a>
+		<a class="pure-button" href="{{ SITE_URL }}/accounts/profile/" style="margin-left: 2em; margin-right: 2em;">My Inventory</a>
 
 		<div class="list" style="width: 100%;"> 
 		
-			<table class="pure-table pure-table-horizontal" style="margin-left: 20%; margin-right: 20%;">
+			<table class="pure-table pure-table-horizontal" style="margin-left: 20%; margin-right: 20%; margin-bottom: 3em;">
 				<thead>
 					<tr>
 						<th>Tool</th>
@@ -44,7 +45,7 @@
 				<tbody>
 					{% for tool in tool_list %}
 						<tr>
-							<td>{{ tool.tool_name }} <img src="{{ STATIC_URL }}tool_pics/{{ tool.tool_name|slugify}}.png"></td>
+							<td>{{ tool.tool_name }} <img src="{{ STATIC_URL }}tool_pics/{{ tool.tool_name|slugify}}.png" style="height:128px"></td>
 							<td>{{ tool.tool_manufacture }}</td>
 							<td>{{ tool.location }}</td>
 							<td><b style="color: blue">{{ tool.quantity_available }}</b>/<b style="color: green">{{ tool.quantity }}</b></td>
