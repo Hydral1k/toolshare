@@ -17,8 +17,9 @@ def home(request):
 
 def profile(request):
 	if request.user.is_authenticated():
-		return render_to_response('profile.html', 
-			{ "" : ""}, context_instance= RequestContext(request))
+		d = dict( inventory = request.user.extendedprofile.getList() )
+		print("hi")
+		return render_to_response('profile.html', d, context_instance= RequestContext(request))
 	else:
 		return render_to_response('error.html', {
 			"error" : "Insufficient privaleges",  # other context 

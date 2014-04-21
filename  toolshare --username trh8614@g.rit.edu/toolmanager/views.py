@@ -90,14 +90,13 @@ def checkoutItem(request, tool):
 		d = request.user.extendedprofile.getList()
 		
 		if type(d) is dict: # not empty dictionary!
-			print("not empty")
+
 			if t.tool_name in d: #tool already in dictionary
 				d[t.tool_name] += 1 #we check out another
 			else:
 				d[t.tool_name] = 1
 
 		else: #empty dictionary!
-			print("empty")
 			d = {}
 			d[t.tool_name] = 1
 
@@ -126,8 +125,10 @@ def returnItem(request, tool):
 		if type(d) is dict: # not empty dictionary!
 			if t.tool_name in d: #tool already in dictionary
 				if d[t.tool_name] > 1:
+					print("removin")
 					d[t.tool_name] = d[t.tool_name] - 1
 				else:
+					print("poppin")
 					d.pop(t.tool_name, None)
 
 		else: #empty dictionary!
@@ -137,7 +138,8 @@ def returnItem(request, tool):
 
 		# dict -> JSON -> django -> sql3
 
-		request.user.get_profile().storeList(d)
+		request.user.extendedprofile.storeList(d)
+		request.user.extendedprofile.save()
 		t.returnItem()
 		t.save()
 

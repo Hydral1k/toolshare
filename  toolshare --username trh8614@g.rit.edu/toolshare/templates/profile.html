@@ -28,7 +28,8 @@
 		<a href="\"><img src="{{ STATIC_URL }}logo.png" class="logo"></a>
 	</div>
 
-	<div class="center"> <!-- start of main content -->
+	<div class="center" style="text-align: center;"> <!-- start of main content -->
+		<h1 style="text-align:center;">Settings</h1>
 		<table class="pure-table" style="margin-left: auto; margin-right: auto">
 			<thead>
 				<tr>
@@ -51,19 +52,22 @@
 		<br>
 		<br>
 		<br>
+		<h1 style="text-align:center;">Your Inventory</h1>
 		<table class="pure-table" style="margin-left: auto; margin-right: auto; width: 60%">
 			<thead>
 				<tr>
 					<th>Tool</th>
-					<th>Picture</th>
+					<th>Quantity</th>
+					<th></th>
 				</tr>
 			</thead>
 
 			<tbody>
-				{% for tool in tool_list %}
+				{% for tool, quantity in inventory.items %}
 					<tr>
-						<td>{{ tool.tool_name }}</td>
-						<td><img src="{{ STATIC_URL }}tool_pics/{{ tool.tool_name|slugify}}.png"></td>
+						<td>{{ tool }}<img src="{{ STATIC_URL }}tool_pics/{{ tool|slugify}}.png"></td>
+						<td style="text-align: center;">{{quantity}}</td>
+						<td style="text-align:center;"><a style="margin: 0 auto;"class="pure-button" href="{{ SITE_URL }}/tools/return/{{tool|slugify}}/">Return!</a></td>
 					</tr>
 				{% endfor %}
 			</tbody>
