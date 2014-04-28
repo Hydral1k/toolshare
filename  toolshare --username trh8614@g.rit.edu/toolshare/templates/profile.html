@@ -55,25 +55,27 @@
 		<br>
 		<br>
 		<h1 style="text-align:center;">Your Inventory</h1>
-		<table class="pure-table" style="margin-left: auto; margin-right: auto; width: 60%">
-			<thead>
-				<tr>
-					<th>Tool</th>
-					<th>Quantity</th>
-					<th></th>
-				</tr>
-			</thead>
-
-			<tbody>
-				{% for tool, quantity in inventory.items %}
+		<div style="padding-bottom:5em;">
+			<table class="pure-table" style="margin-left: auto; margin-right: auto; width: 60%; ">
+				<thead>
 					<tr>
-						<td>{{ tool }}<img src="{{ STATIC_URL }}tool_pics/{{ tool|slugify}}.png"></td>
-						<td style="text-align: center;">{{quantity}}</td>
-						<td style="text-align:center;"><a style="margin: 0 auto;"class="pure-button" href="{{ SITE_URL }}/tools/return/{{tool|slugify}}/">Return!</a></td>
+						<th>Tool</th>
+						<th>Quantity</th>
+						<th></th>
 					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
+				</thead>
+
+				<tbody>
+					{% for tool, quantity in inventory.items %}
+						<tr>
+							<td>{{ tool }}<img src="{{ STATIC_URL }}tool_pics/{{ tool|slugify}}.png" onerror="this.src='{{ STATIC_URL }}tool_pics/unknown.png';" style="height:128px; padding: 1em 1em 1em 1em;"></td>
+							<td style="text-align: center;">{{quantity}}</td>
+							<td style="text-align:center;"><a style="margin: 0 auto;"class="pure-button" href="{{ SITE_URL }}/tools/return/{{tool|slugify}}/">Return!</a></td>
+						</tr>
+					{% endfor %}
+				<tbody>
+			</table>
+		</div>
 	</div>
 
 {% endblock %}
