@@ -10,6 +10,7 @@ Master models page for tool object / class
 from django.db import models
 from django.contrib import admin
 from django.utils.text import slugify
+from django.contrib.auth.models import User
 """
 	Using Django Database class style. 
 	Configures database to save Tool objects, with specific attributes listed below
@@ -23,13 +24,18 @@ class Tool(models.Model):
 	tool_description = models.TextField()
 	quantity = models.IntegerField()
 	quantity_available = models.IntegerField()
+	# create a relation of the tool to the user,
+	owner = models.ForeignKey(User, related_name="wat")
 
+	# admin only methods.
 	def addquant():
-		quantity=quantity+1;
-
+		self.quantity=self.quantity+1
+		self.quantity_available=self.quantity_available+1
 	def subquant():
-		quantity=quantity-1;
+		self.quantity=self.quantity-1
+		self.quantity_available=self.quantity_available-1
 
+	# user methods.
 	def checkoutItem(self):
 		self.quantity_available = min(self.quantity, max(0, self.quantity_available - 1))
 

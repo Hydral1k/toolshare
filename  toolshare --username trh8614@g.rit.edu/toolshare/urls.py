@@ -16,6 +16,7 @@ urlpatterns = patterns('',
     url(r'^accounts/profile', 'toolshare.views.profile'),
     url(r'^tools/browse/', 'toolmanager.views.browse'),
     url(r'^tools/add/', 'toolmanager.views.add'),
+    url(r'^tools/view/(?P<tool>[a-zA-Z0-9_.-]+)', 'toolmanager.views.describeItem'),
     url(r'^tools/checkout/(?P<tool>[a-zA-Z0-9_.-]+)/$', 'toolmanager.views.checkoutItem'),
     url(r'^tools/return/(?P<tool>[a-zA-Z0-9_.-]+)/$', 'toolmanager.views.returnItem'),
     url(r'^tools/', 'toolmanager.views.browse')

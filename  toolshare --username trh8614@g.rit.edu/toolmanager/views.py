@@ -72,7 +72,7 @@ def add(request):
 					}, context_instance = RequestContext(request))
 
 				tool = Tool( tool_name=form.cleaned_data["tool_name"], tool_manufacture=form.cleaned_data["tool_manufacture"], location=form.cleaned_data["location"], tool_description=form.cleaned_data["tool_description"], quantity=form.cleaned_data["quantity"],
-							 quantity_available=max(min(form.cleaned_data["quantity_available"], form.cleaned_data["quantity"]), 0))
+							 quantity_available=max(min(form.cleaned_data["quantity_available"], form.cleaned_data["quantity"]), 0), owner=request.user)
 				tool.save()
 				d = dict( tool_list = Tool.objects.all() )
 				return redirect('toolmanager.browse')
@@ -179,5 +179,22 @@ def returnItem(request, tool):
 			"error" : "Insufficient privileges",  # other context 
 		}, context_instance = RequestContext(request))
 
+"""
+	describeItem
+
+	Shows info and describes the item. Essentially an info page.
+	@param: request (preinfo), tool (slugged string, name)
+	@return: renders tool page.
+
+"""
+def describeItem(request, tool):
+	
+	print("test")
+	# we fetch the tool
+	unslug = tool.replace('-', ' ')
+	t  = Tool.objects.get(tool_name__iexact=unslug)
+	d = dict( tool = t )
+
+	return render_to_response('tools/tool.html', d, context_instance = RequestContext(request))
 
 

@@ -27,9 +27,9 @@
 		<a class="pure-button" href="{{ SITE_URL }}/tools/search/" style="margin-left: 2em; margin-right: 2em;">Search</a>
 		<a class="pure-button" href="{{ SITE_URL }}/accounts/profile/" style="margin-left: 2em; margin-right: 2em;">My Inventory</a>
 
-		<div class="list" style="width: 100%;"> 
+		<div class="list" style="margin: 2em auto; width: 55%; "> 
 		
-			<table class="pure-table pure-table-horizontal" style="margin-left: 20%; margin-right: 20%; margin-bottom: 3em;">
+			<table class="pure-table pure-table-horizontal" style="margin-bottom: 3em; width: 100%; ">
 				<thead>
 					<tr>
 						<th>Tool</th>
@@ -46,7 +46,10 @@
 				<tbody>
 					{% for tool in tool_list %}
 						<tr>
-							<td>{{ tool.tool_name }} <img src="{{ STATIC_URL }}tool_pics/{{ tool.tool_name|slugify}}.png" onerror="this.src='{{ STATIC_URL }}tool_pics/unknown.png';" style="height:128px; padding: 1em 1em 1em 1em;"></td>
+							<td>
+								{{ tool.tool_name }} 
+								<a href="{{ SITE_URL }}/tools/view/{{tool.tool_name|slugify}}"><img src="{{ STATIC_URL }}tool_pics/{{ tool.tool_name|slugify}}.png" onerror="this.src='{{ STATIC_URL }}tool_pics/unknown.png';" style="height:128px; padding: 1em 1em 1em 1em;"></a>
+							</td>
 							<td>{{ tool.tool_manufacture }}</td>
 							<td>{{ tool.location }}</td>
 							<td><b style="color: blue">{{ tool.quantity_available }}</b>/<b style="color: green">{{ tool.quantity }}</b></td>
