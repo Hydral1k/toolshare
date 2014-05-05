@@ -15,7 +15,7 @@ import json # we use this to package to sql3
 
 """
 class ExtendedProfile(models.Model):
-    INVENTORY_LIMIT = 999999
+    INVENTORY_LIMIT = 9999
     user = models.OneToOneField(User, unique=True)
     zipcode = models.CharField(max_length=10, blank=True)
     inventory = models.CharField(max_length=INVENTORY_LIMIT, editable=False) #dataslot for json!
@@ -31,6 +31,7 @@ class ExtendedProfile(models.Model):
         @return: false if error.
     """
     def storeList( self, data ):
+        INVENTORY_LIMIT = 9999
         d = json.dumps(data)
         if len(d) > INVENTORY_LIMIT :
             raise Exception("Current user inventory data over MySQL field limit. Increase limit constant")
