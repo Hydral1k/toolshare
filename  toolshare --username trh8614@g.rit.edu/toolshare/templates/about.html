@@ -1,0 +1,45 @@
+{% comment %}
+	SWEN-261
+	Bradley Conn
+
+	Activation page! Requires key!
+{% endcomment %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block content %}
+	<link rel="stylesheet" type="text/css" href="/static/main.css">
+	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.4.2/pure-min.css"> <!-- css boilerplate -->
+	<title>toolShare - Profile</title>
+	<div id="top">
+		
+		<div class="menu">
+			{% if user.is_authenticated %} 
+				<b style="margin-left: 2em; margin-right: 2em">Welcome {{ user.username }}!</b>
+				<!--- we include a menu here! -->
+				<a class="pure-button" href="{{ SITE_URL }}/accounts/profile/">Profile</a>
+				<a class="pure-button" href="{{ SITE_URL }}/accounts/logout/">Log Out</a>
+				<a class="pure-button" href="{{ SITE_URL }}/tools/">Tools</a>
+				<a class="pure-button" href="{{ SITE_URL }}/">Home</a>
+
+			{% else %} <a href="{{ SITE_URL }}/accounts/register/">Register</a> or <a href="{{ SITE_URL }}/accounts/login/">Sign-In</a>{% endif %}
+		</div>
+
+		<a href="\"><img src="{{ STATIC_URL }}logo.png" class="logo"></a>
+	</div>
+
+	<div class="center" style="text-align: center;"> <!-- start of main content -->
+		<h1 style="text-align:center;">About toolshare!</h1>
+		<br>
+		<br>
+		<br>
+		<p style="text-align:center;">The toolshare website allows for local communities to easily 
+		share their tools among one other in an organized manor. You can check out a tool from a 
+		neighbour or submit your own tool for others to borrow! Each member has their own profile to keep track of their 
+		activity as well as monitor their tools activity. Getting started is easy! Just hit the register button up top 
+		and begin your sharing!</p>
+		<div style="padding-bottom:5em;">
+			
+		</div>
+	</div>
+{% endblock %}
