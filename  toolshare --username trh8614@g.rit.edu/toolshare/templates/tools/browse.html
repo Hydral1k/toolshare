@@ -53,7 +53,7 @@
 							</td>
 							<td>{{ tool.tool_manufacture }}</td>
 							<td>{{ tool.location }}</td>
-							<td>{{ tool.tool_name|colorfy|safe }}</td>
+							<td><div style="background: rgba(0, 0, 0, 0.75); border-radius: 5px; font-weight: bold;">{{ tool.tool_name|colorfy|safe }}</div></td>
 							<td><a class="pure-button" href="{{ SITE_URL }}/tools/addone/{{tool.tool_name|slugify}}/">+</a></td>
 							<td><a class="pure-button" href="{{ SITE_URL }}/tools/minusone/{{tool.tool_name|slugify}}/">-</a></td>
 							<td><a class="pure-button" href="{{ SITE_URL }}/tools/checkout/{{tool.tool_name|slugify}}/">Checkout!</a></td>
