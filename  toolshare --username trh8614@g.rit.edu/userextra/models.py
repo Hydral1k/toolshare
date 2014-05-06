@@ -31,9 +31,9 @@ class ExtendedProfile(models.Model):
         @return: false if error.
     """
     def storeList( self, data ):
-        INVENTORY_LIMIT = 9999
+        
         d = json.dumps(data)
-        if len(d) > INVENTORY_LIMIT :
+        if len(d) > self.INVENTORY_LIMIT :
             raise Exception("Current user inventory data over MySQL field limit. Increase limit constant")
             return False
         else:
