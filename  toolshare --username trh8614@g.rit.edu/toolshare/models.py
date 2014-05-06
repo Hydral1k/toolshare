@@ -7,7 +7,8 @@ from django.contrib.auth.models import User
 
 
 """
-    Django extension to user class to add extra DB field to User profiles.
-    Uses one to one relationship with ForeignKey.
+    Not necessary. Content split into apps. 
 
+    Please see documentation.
+    
 """
