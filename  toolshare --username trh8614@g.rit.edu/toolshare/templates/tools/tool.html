@@ -1,5 +1,8 @@
 {# SWEN-261 Thomas Heissenberger4/30/2014 #}
 {% load staticfiles %}
+{% load tool_tag %}
+ <!-- we'll get some extra functionality with this -->
+}
 <html>
 	<title>toolShare</title>
 	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}main.css"> <!--- simple template -->
@@ -47,21 +50,22 @@
     			<!-- we want to stack these divs vertically -->
     				<div id="owner_display" style="color: slategrey;">
     					<form class="pure-form" style = "text-align: right; margin-right: 2em;">
-    						Owner: <input type="text" value="{{tool.owner}}" style="color: rgb(46, 180, 94);font-weight: bold; text-align: center; width: 100px;" readonly>
+    						Owner: <input type="text" value="{{tool.owner}}" style="color: rgb(45, 65, 70);font-weight: bold; text-align: center; width: 100px;" readonly>
     					</form>
     				</div>
     				<br>
     				<div id="location_display" style="color: slategrey; margin-right: 2em;">
     					<form class="pure-form" style = "text-align: right;">
-    						Location: <input type="text" value="{{tool.location}}" style="color: rgb(46, 180, 94);font-weight: bold; text-align: center; width: 100px;" readonly>
+    						Location: <input type="text" value="{{tool.location}}" style="color: rgb(41, 65, 70);font-weight: bold; text-align: center; width: 100px;" readonly>
     					</form>
     				</div>
     				<br>
-    				<div id="location_display" style="color: slategrey; margin-right: 2em;">
-    					<form class="pure-form" style = "text-align: right;">
+    				<div id="quantity_display" style="color: slategrey; margin-right: 2em; text-align: right; vertical-align:middle">
+    						Quantity:&nbsp;<div style="text-align: center; float: right; width: 100px; height: 38px; background: #eee; border-radius: 5px; margin: 1px 1px 1px 1px; vertical-align: middle; font-weight: bold;"> 
+    							{{ tool.tool_name|colorfy|safe }}
+    						</div>
     						
-    						Quantity: <input type="text" value="{{tool.quantity_available}} / {{tool.quantity}}" style="color: rgb(0, 0, 0);font-weight: bold; text-align: center; width: 100px;" readonly>
-    					</form>
+    					
     				</div>
 
     			</div>

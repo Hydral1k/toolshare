@@ -1,5 +1,6 @@
 {# SWEN-261 Thomas Heissenberger #}
 {% load staticfiles %}
+{% load tool_tag %}
 <html>
 	<title>toolShare</title>
 	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}main.css"> <!--- simple template -->
@@ -52,7 +53,7 @@
 							</td>
 							<td>{{ tool.tool_manufacture }}</td>
 							<td>{{ tool.location }}</td>
-							<td><b style="color: blue">{{ tool.quantity_available }}</b>/<b style="color: green">{{ tool.quantity }}</b></td>
+							<td>{{ tool.tool_name|colorfy|safe }}</td>
 							<td><a class="pure-button" href="{{ tool.addquant }}">+</a></td>
 							<td><a class="pure-button" href="{{ tool.subquant }}">-</a></td>
 							<td><a class="pure-button" href="{{ SITE_URL }}/tools/checkout/{{tool.tool_name|slugify}}/">Checkout!</a></td>
