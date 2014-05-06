@@ -28,10 +28,10 @@ class Tool(models.Model):
 	owner = models.ForeignKey(User, related_name="wat")
 
 	# admin only methods.
-	def addquant():
+	def addquant(self):
 		self.quantity=self.quantity+1
 		self.quantity_available=self.quantity_available+1
-	def subquant():
+	def subquant(self):
 		self.quantity=self.quantity-1
 		self.quantity_available=self.quantity_available-1
 

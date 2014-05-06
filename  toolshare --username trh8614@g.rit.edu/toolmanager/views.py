@@ -189,12 +189,49 @@ def returnItem(request, tool):
 """
 def describeItem(request, tool):
 	
-	print("test")
 	# we fetch the tool
 	unslug = tool.replace('-', ' ')
 	t  = Tool.objects.get(tool_name__iexact=unslug)
 	d = dict( tool = t )
 
 	return render_to_response('tools/tool.html', d, context_instance = RequestContext(request))
+
+
+def addOne(request, tool):
+
+	if not (request.user.is_staff or request.user.is_superuser):
+
+		return render_to_response('error.html', {
+			"error" : "You need Admin privaleges!",  # other context 
+		}, context_instance = RequestContext(request))
+
+	else:
+
+		unslug = tool.replace('-', ' ')
+		t  = Tool.objects.get(tool_name__iexact=unslug)
+
+		if t:
+			t.addquant()
+			t.save()
+
+		return redirect('toolmanager.browse')
+
+def minusOne(request, tool):
+
+	if not (request.user.is_staff or request.user.is_superuser):
+
+		return render_to_response('error.html', {
+			"error" : "You need Admin privaleges!",  # other context 
+		}, context_instance = RequestContext(request))
+
+	else:
+		unslug = tool.replace('-', ' ')
+		t  = Tool.objects.get(tool_name__iexact=unslug)
+
+		if t:
+			t.subquant()
+			t.save()
+
+		return redirect('toolmanager.browse')
 
 

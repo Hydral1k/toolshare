@@ -8,8 +8,14 @@ from django.utils.translation import ugettext_lazy as _
 from userextra.models import ExtendedProfile
 from toolmanager.models import *
 
+class RequestFactory():
+
+	
 
 
+"""
+	Request created by user. Must be confirmed by owner.
+"""
 class Request(models.Manager):
 
 	daterequest = models.DateField(
@@ -21,7 +27,15 @@ class Request(models.Manager):
 		auto_now_add=True,
 		help_text='Please use the following format: <em>HH-MM</em>.',
 		error_message='Please enter a valid time!')
-	daterequest = models.DateField(auto_now_add=True)
-	timerequest = models.TimeField(auto_now_add=True)
+	datereturn = models.DateField(
+		auto_now_add=True,
+		help_text='Please use the following format: <em>YYYY-MM-DD</em>.',
+		error_message='Please enter a valid date!')
+	timereturn = models.TimeField(
+		auto_now_add=True,
+		help_text='Please use the following format: <em>HH-MM</em>.',
+		error_message='Please enter a valid time!')
+	tool = None
 	comment = models.CharField(max_length=300)
 	ownerconfirm = models.BooleanField()
+	lengthusage = "" # will be determined by timerequest-timereturn
