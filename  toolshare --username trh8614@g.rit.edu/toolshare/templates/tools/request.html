@@ -29,7 +29,10 @@
 			<form method="post" class="pure-form pure-form-stacked" action=".">
 				 <fieldset>
 				 	{% csrf_token %} 
+
 					{{form}}
+					{{ form.errors }}
+					{{ form.non_field_errors }}
 					<style scoped>
 
 						.button-success,

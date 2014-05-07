@@ -108,13 +108,6 @@ STATICFILES_DIRS = (
 )
 
 ACCOUNT_ACTIVATION_DAYS = 7
-
-TIME_INPUT_FORMATS= (
-    '%H:%M:%S',     # '14:30:59'
-    '%H:%M:%S.%f',  # '14:30:59.000200'
-    '%H:%M',        # '14:30'
-    '%I:%M %p' # '02:30 PM'
-)
 """
     Basic Email PORT
 

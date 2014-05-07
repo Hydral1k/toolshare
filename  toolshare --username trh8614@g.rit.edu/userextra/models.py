@@ -21,6 +21,7 @@ class ExtendedProfile(models.Model):
     zipcode = models.CharField(max_length=10, blank=True)
     inventory = models.CharField(max_length=INVENTORY_LIMIT, editable=False) #dataslot for json!
     stack = models.CharField(max_length=INVENTORY_LIMIT, editable=False) #dataslot for json!
+    stacksize = models.CharField(max_length=INVENTORY_LIMIT, editable=False, default=0) #dataslot for json!
 
     """
         storeList
@@ -63,6 +64,9 @@ class ExtendedProfile(models.Model):
             return False
         else:
             self.stack = d
+            print(self.stack)
+            print("fucksalt")
+            self.stacksize = len(data)
     # as above, except for stack
     def getStack( self ):
         if self.stack == "": #no data, fresh stack.

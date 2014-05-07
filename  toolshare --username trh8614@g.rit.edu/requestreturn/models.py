@@ -25,14 +25,13 @@ from time import strftime
 """
 
 def StackFactory( u, requestorreturn):
-	print("Tehe")
 
 	# this user has nothing in his stack
 	# let's add to his collection!
 	if u.extendedprofile.emptyStack():
 
 		stack = []
-		stack.append(requestorreturn.pk)
+		stack.append(requestorreturn.id)
 
 		u.extendedprofile.storeStack(stack)
 		u.extendedprofile.save()
@@ -42,7 +41,7 @@ def StackFactory( u, requestorreturn):
 	else: 
 
 		stack = u.extendedprofile.getStack()
-		stack.append(requestorreturn.pk)
+		stack.append(requestorreturn.id)
 
 		u.extendedprofile.storeStack(stack)
 		u.extendedprofile.save()
@@ -56,9 +55,8 @@ def StackFactory( u, requestorreturn):
 """
 class Request(models.Model):
 
-	id = models.AutoField(primary_key=True, unique=True)
-
-	tool = models.ForeignKey(Tool, related_name='Tool')
+	tool = models.ForeignKey(Tool, related_name='Tool',
+		error_messages={ 'required' : "You need to select a tool!"})
 
 	owner = models.ForeignKey(User, related_name="owner")
 	user = models.ForeignKey(User, related_name="user")
@@ -68,12 +66,15 @@ class Request(models.Model):
 		default=date.today)
 
 	timerequest = models.TimeField(
-		help_text='Please use the following format: <em>HH:MM AM/PM</em> (12 Hour).',
-		default=strftime('%I:%M %p'))
+		help_text='Please use the following format: <em>HH:HM:SS</em> (24 Hour).',
+		default=strftime('%H:%M:%S'))
 	datereturn = models.DateField(
-		help_text='Please use the following format: <em>YYYY-MM-DD</em>.')
+		help_text='Please use the following format: <em>YYYY-MM-DD</em>.',
+		default=date.today)
+
 	timereturn = models.TimeField(
-		help_text='Please use the following format: <em>HH:MM AM/PM</em> (12 Hour)</em>.')
+		help_text='Please use the following format: <em>HH:HM:SS</em> (24 Hour)</em>.',
+		default=strftime('%H:%M:%S'))
 	
 	comment = models.CharField(max_length=300)
 	ownerconfirm = models.BooleanField()
@@ -81,4 +82,4 @@ class Request(models.Model):
 class RequestForm(ModelForm):
     class Meta:
         model = Request
-        fields = ['tool', 'owner', 'user', 'daterequest', 'timerequest', 'datereturn', 'timereturn']
+        fields = ['tool', 'owner', 'user', 'daterequest', 'timerequest', 'datereturn', 'timereturn', 'comment']
