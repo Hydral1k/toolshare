@@ -29,7 +29,11 @@ def colorfy(toolname):
 		denominator = t.quantity
 		intensity = math.floor(255*1)
 
-		n = numerator / denominator
+		try:
+			n = numerator / denominator
+		except ZeroDivisionError:
+			n=0
+
 		# now we colorfy it.
 		r = math.floor(intensity - (intensity*n)) 
 		g = math.floor((intensity*n))
