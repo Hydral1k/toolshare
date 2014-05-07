@@ -21,11 +21,33 @@ from django.forms import ModelForm
 from django.template import RequestContext
 from toolmanager.models import Tool
 from toolmanager.forms import ToolForm
-from requestreturn.models import Request, RequestForm, StackFactory
+from requestreturn.models import Request, RequestForm
 from django.forms.models import modelformset_factory
 from django.forms.models import modelform_factory
 from django.contrib.auth import get_user_model
 
+def StackFactory( u, requestorreturn):
+
+	# this user has nothing in his stack
+	# let's add to his collection!
+	if u.extendedprofile.emptyStack():
+
+		stack = []
+		stack.append(requestorreturn.id)
+
+		u.extendedprofile.storeStack(stack)
+		u.extendedprofile.save()
+
+	# user has items in his stack
+	# let's accomidate to his pile and add request to top.
+	else: 
+
+		stack = u.extendedprofile.getStack()
+		stack.append(requestorreturn.id)
+
+		u.extendedprofile.storeStack(stack)
+		u.extendedprofile.save()
+		
 def home(request):
 	return render_to_response('tools/index.html', {
 		"" : "",  # other context 
@@ -145,26 +167,6 @@ def checkoutItem(request, tool):
 		else:
 			return render_to_response('tools/request.html', {"form":request_form}, context_instance = RequestContext(request))
 
-
-		
-		if type(d) is dict: # not empty dictionary!
-
-			if t.tool_name in d: #tool already in dictionary
-				d[t.tool_name] += 1 #we check out another
-			else:
-				d[t.tool_name] = 1
-
-		else: #empty dictionary!
-			d = {}
-			d[t.tool_name] = 1
-
-		# dict -> JSON -> django -> sql3
-
-		request.user.extendedprofile.storeList(d)
-		request.user.extendedprofile.save()
-		t.checkoutItem()
-		t.save()
-		d = dict( tool_list = Tool.objects.all() )
 		return render_to_response('process.html', {
 			"transactiontype" : "Request",  # other context 
 		}, context_instance = RequestContext(request))

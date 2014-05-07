@@ -13,6 +13,7 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'toolshare.views.home'),
+    url(r'^notices/', 'toolshare.views.notices'),
     url(r'^accounts/profile', 'toolshare.views.profile'),
     url(r'^tools/browse/', 'toolmanager.views.browse'),
     url(r'^tools/add/', 'toolmanager.views.add'),
@@ -21,6 +22,8 @@ urlpatterns = patterns('',
     url(r'^tools/minusone/(?P<tool>[a-zA-Z0-9_.-]+)/$', 'toolmanager.views.minusOne'),
     url(r'^tools/checkout/(?P<tool>[a-zA-Z0-9_.-]+)/$', 'toolmanager.views.checkoutItem'),
     url(r'^tools/return/(?P<tool>[a-zA-Z0-9_.-]+)/$', 'toolmanager.views.returnItem'),
+    url(r'^tools/accept/(?P<key>[0-9_.-]+)', 'toolshare.views.accept'),
+    url(r'^tools/reject/(?P<key>[0-9_.-]+)', 'toolshare.views.reject'),
     url(r'^tools/', 'toolmanager.views.browse')
 
 

@@ -6,7 +6,6 @@ from django.db import models
 from django.db import transaction
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
-from userextra.models import ExtendedProfile
 from toolmanager.models import *
 from datetime import datetime, date, time
 from time import strftime
@@ -24,27 +23,7 @@ from time import strftime
 
 """
 
-def StackFactory( u, requestorreturn):
 
-	# this user has nothing in his stack
-	# let's add to his collection!
-	if u.extendedprofile.emptyStack():
-
-		stack = []
-		stack.append(requestorreturn.id)
-
-		u.extendedprofile.storeStack(stack)
-		u.extendedprofile.save()
-
-	# user has items in his stack
-	# let's accomidate to his pile and add request to top.
-	else: 
-
-		stack = u.extendedprofile.getStack()
-		stack.append(requestorreturn.id)
-
-		u.extendedprofile.storeStack(stack)
-		u.extendedprofile.save()
 
 	
 
@@ -77,7 +56,11 @@ class Request(models.Model):
 		default=strftime('%H:%M:%S'))
 	
 	comment = models.CharField(max_length=300)
-	ownerconfirm = models.BooleanField()
+	ownerconfirm = models.BooleanField(default=False)
+
+	def __str__(self):
+		return "Request"
+
 	
 class RequestForm(ModelForm):
     class Meta:

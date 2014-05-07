@@ -1,0 +1,69 @@
+{# SWEN-261 Thomas Heissenberger #}
+{% load staticfiles %}
+{% load tool_tag %}
+<html>
+	<title>toolShare</title>
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}main.css"> <!--- simple template -->
+	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.4.2/pure-min.css"> <!-- css boilerplate -->
+	<div id="top">
+		
+		<div class="menu">
+			{% if user.is_authenticated %} 
+				<b style="margin-left: 2em; margin-right: 2em">Welcome {{ user.username }}!</b>
+				<!--- we include a menu here! -->
+				<a class="pure-button" href="{{ SITE_URL }}/accounts/profile/">Profile</a>
+				<a class="pure-button" href="{{ SITE_URL }}/accounts/logout/">Log Out</a>
+				<a class="pure-button" href="{{ SITE_URL }}/tools/">Tools</a>
+				<a class="pure-button" href="{{ SITE_URL }}/">Home</a>
+				<a class="pure-button pure-button-primary" href="{{ SITE_URL }}/notices/">({{user.extendedprofile.stacksize}}) Notifications</a>
+
+			{% else %} <a href="{{ SITE_URL }}/accounts/register/">Register</a> or <a href="{{ SITE_URL }}/accounts/login/">Sign-In</a>{% endif %}
+		</div>
+		<a href="\"><img src="{{ STATIC_URL }}logo.png" class="logo"></a>
+	</div>
+	<h2 style="text-align: center; color: black;">Notices</h2>
+	<hr>
+	<div class="center"> <!-- start of main content -->
+
+		<div class="list" style="margin: 2em auto; width: 55%; "> 
+		
+			<table class="pure-table pure-table-horizontal" style="margin-bottom: 3em; width: 100%; ">
+				<thead>
+					<tr>
+						<th>Notice Type</th>
+						<th>Tool</th>
+						<th>Time</th>
+						<th>Total Time</th>
+						<th>Comments</th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+
+				<tbody>
+					{% for notice in notice_list %}
+						<tr>
+							<td>
+								<b>{{notice.user.first_name}} {{notice.user.last_name}}</b> would like to <b>{{ notice |slugify}}:</b>
+							</td>
+							<td>
+								{{ notice.tool }}
+								<a href="{{ SITE_URL }}/tools/view/{{tool.tool_name|slugify}}"><img src="{{ STATIC_URL }}tool_pics/{{ notice.tool|slugify}}.png" onerror="this.src='{{ STATIC_URL }}tool_pics/unknown.png';" style="height:128px; padding: 1em 1em 1em 1em;"></a>
+							</td>
+							<td>{{ notice.time }}</td>
+							<td>Total Time</td>
+							<td>{{notice.comment}}</td>
+							<td><a class="pure-button" style="background: rgb(28, 184, 65);" href="{{ SITE_URL }}/tools/accept/{{notice.id}}/">Accept</a></td>
+							<td><a class="pure-button" style="background: rgb(202, 60, 60);" href="{{ SITE_URL }}/tools/reject/{{notice.id}}/">Reject</a></td>
+						</tr>
+					{% endfor %}
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+
+
+
+</html>

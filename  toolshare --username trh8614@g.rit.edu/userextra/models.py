@@ -6,6 +6,7 @@
 """
 from django.db import models
 from django.contrib.auth.models import User
+from requestreturn.models import Request
 import json # we use this to package to sql3
 
 
@@ -56,24 +57,43 @@ class ExtendedProfile(models.Model):
         else:
             return json.loads(self.inventory)
 
+    # same as above, except list is with objects
+
+
+
+
     # as above, except for stack
     def storeStack( self, data):
-        d = json.dumps(data)
+        if data == []:
+            d = ""
+        else:
+            d = json.dumps(data)
+
         if len(d) > self.STACK_LIMIT :
             raise Exception("Current user stack data over MySQL field limit. Increase limit constant")
             return False
         else:
             self.stack = d
-            print(self.stack)
-            print("fucksalt")
             self.stacksize = len(data)
     # as above, except for stack
     def getStack( self ):
         if self.stack == "": #no data, fresh stack.
-            return ""
+            return []
         else:
             return json.loads(self.stack)
 
+    def getStackObj( self ):
+
+        if self.stack == "":
+            return []
+        else:
+            l = json.loads(self.stack)
+            newl = []
+            for value in l:
+                newl.append(Request.objects.get(id=value))
+
+            return newl
+            
     def emptyStack( self ):
         if self.stack == "": #no data, fresh stack.
             return True
