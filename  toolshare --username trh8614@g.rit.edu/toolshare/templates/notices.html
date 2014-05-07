@@ -25,14 +25,14 @@
 	<hr>
 	<div class="center"> <!-- start of main content -->
 
-		<div class="list" style="margin: 2em auto; width: 55%; "> 
+		<div class="list" style="margin: 2em auto; width: 85%; "> 
 		
 			<table class="pure-table pure-table-horizontal" style="margin-bottom: 3em; width: 100%; ">
 				<thead>
 					<tr>
 						<th>Notice Type</th>
 						<th>Tool</th>
-						<th>Time</th>
+						<th>When?</th>
 						<th>Total Time</th>
 						<th>Comments</th>
 						<th></th>
@@ -50,8 +50,8 @@
 								{{ notice.tool }}
 								<a href="{{ SITE_URL }}/tools/view/{{tool.tool_name|slugify}}"><img src="{{ STATIC_URL }}tool_pics/{{ notice.tool|slugify}}.png" onerror="this.src='{{ STATIC_URL }}tool_pics/unknown.png';" style="height:128px; padding: 1em 1em 1em 1em;"></a>
 							</td>
-							<td>{{ notice.time }}</td>
-							<td>Total Time</td>
+							<td style="width: 200px;">{{ notice.daterequest }} <br> {{ notice.timerequest }}</td>
+							<td>{{ notice.daterequest|timesince:notice.datereturn }}</td>
 							<td>{{notice.comment}}</td>
 							<td><a class="pure-button" style="background: rgb(28, 184, 65);" href="{{ SITE_URL }}/tools/accept/{{notice.id}}/">Accept</a></td>
 							<td><a class="pure-button" style="background: rgb(202, 60, 60);" href="{{ SITE_URL }}/tools/reject/{{notice.id}}/">Reject</a></td>

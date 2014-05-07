@@ -60,9 +60,11 @@ class Request(models.Model):
 
 	def __str__(self):
 		return "Request"
-
 	
 class RequestForm(ModelForm):
     class Meta:
         model = Request
         fields = ['tool', 'owner', 'user', 'daterequest', 'timerequest', 'datereturn', 'timereturn', 'comment']
+
+
+	

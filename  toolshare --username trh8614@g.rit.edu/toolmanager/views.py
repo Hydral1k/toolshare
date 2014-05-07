@@ -60,6 +60,9 @@ def home(request):
 # return: page render with context (Tool object dictionary )
 """
 def browse(request):
+
+	
+
 	if request.user.is_authenticated():
 		d = dict( tool_list = Tool.objects.all() )
 		for tools in d['tool_list']: 
@@ -142,8 +145,9 @@ def checkoutItem(request, tool):
 		request_form = RequestForm(
 				initial={'owner': t.owner, 'tool' : t, 'user' : request.user}
 		)
-		
-	
+		request_form.fields['owner'].widget.attrs['readonly'] = True
+		request_form.fields['tool'].widget.attrs['readonly'] = True
+		request_form.fields['user'].widget.attrs['readonly'] = True
 
 		if request.method == 'POST': #looks like the user is trying to save a new tool!
 			request_form = RequestForm(request.POST)
@@ -163,7 +167,8 @@ def checkoutItem(request, tool):
 					ownerconfirm=False)
 				rr.save()
 				StackFactory( request.user, rr )
-
+			else:
+				return render_to_response('tools/request.html', {"form":request_form}, context_instance = RequestContext(request))
 		else:
 			return render_to_response('tools/request.html', {"form":request_form}, context_instance = RequestContext(request))
 

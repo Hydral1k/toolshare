@@ -21,6 +21,7 @@
 				<a class="pure-button" href="{{ SITE_URL }}/accounts/logout/">Log Out</a>
 				<a class="pure-button" href="{{ SITE_URL }}/tools/">Tools</a>
 				<a class="pure-button" href="{{ SITE_URL }}/">Home</a>
+				<a class="pure-button pure-button-primary" href="{{ SITE_URL }}/notices/">({{user.extendedprofile.stacksize}}) Notifications</a>
 
 			{% else %} <a href="{{ SITE_URL }}/accounts/register/">Register</a> or <a href="{{ SITE_URL }}/accounts/login/">Sign-In</a>{% endif %}
 		</div>
@@ -68,7 +69,7 @@
 				<tbody>
 					{% for tool, quantity in inventory.items %}
 						<tr>
-							<td>{{ tool }}<img src="{{ STATIC_URL }}tool_pics/{{ tool|slugify}}.png" onerror="this.src='{{ STATIC_URL }}tool_pics/unknown.png';" style="height:128px; padding: 1em 1em 1em 1em;"></td>
+							<td>{{ tool }}<a href="{{ SITE_URL }}/tools/view/{{tool|slugify}}"><img src="{{ STATIC_URL }}tool_pics/{{ tool|slugify}}.png" onerror="this.src='{{ STATIC_URL }}tool_pics/unknown.png';" style="height:128px; padding: 1em 1em 1em 1em;"></a></td>
 							<td style="text-align: center;">{{quantity}}</td>
 							<td style="text-align:center;"><a style="margin: 0 auto;"class="pure-button" href="{{ SITE_URL }}/tools/return/{{tool|slugify}}/">Return!</a></td>
 						</tr>

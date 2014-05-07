@@ -15,6 +15,7 @@
 				<a class="pure-button" href="{{ SITE_URL }}/accounts/logout/">Log Out</a>
 				<a class="pure-button" href="{{ SITE_URL }}/tools/">Tools</a>
 				<a class="pure-button" href="{{ SITE_URL }}/">Home</a>
+				<a class="pure-button pure-button-primary" href="{{ SITE_URL }}/notices/">({{user.extendedprofile.stacksize}}) Notifications</a>
 
 			{% else %} <a href="{{ SITE_URL }}/accounts/register/">Register</a> or <a href="{{ SITE_URL }}/accounts/login/">Sign-In</a>{% endif %}
 		</div>
@@ -27,8 +28,28 @@
 		<a class="pure-button" href="{{ SITE_URL }}/tools/add/" style="margin-left: 2em; margin-right: 2em;">Add</a>
 		<a class="pure-button" href="{{ SITE_URL }}/tools/search/" style="margin-left: 2em; margin-right: 2em;">Search</a>
 		<a class="pure-button" href="{{ SITE_URL }}/accounts/profile/" style="margin-left: 2em; margin-right: 2em;">My Inventory</a>
+		
+		<!-- CURRENTLY DISABLED
+		<form action="{{ SITE_URL }}/tools/browse/" method="get">{% csrf_token %}
+		    <label for="option-one">
+		        <input id="nonlocal" type="checkbox" name="nonlocal" value="1">
+		        Include Non-Local Zipcode Items
+		    </label>
 
-		<div class="list" style="margin: 2em auto; width: 55%; "> 
+		    <label for="option-two" class="pure-radio">
+		        <input id="asc" type="radio" name="optionsRadios" value="asc" checked>
+		        Ascending
+		    </label>
+
+		    <label for="option-three" class="pure-radio">
+		        <input id="desc" type="radio" name="optionsRadios" value="desc">
+		        Descending
+		    </label>
+		    <input type="submit" value="Submit">
+		</form>
+		-->
+
+		<div class="list" style="margin: 2em auto; width: 85%; "> 
 		
 			<table class="pure-table pure-table-horizontal" style="margin-bottom: 3em; width: 100%; ">
 				<thead>
@@ -36,6 +57,8 @@
 						<th>Tool</th>
 						<th>Manufacture</th>
 						<th>Location</th>
+						<th>Zipcode</th>
+						<th>Owner</th>
 						<th>Quantity Available</th>
 						<th>Add Item</th>
 						<th>Subtract Item</th>
@@ -53,6 +76,8 @@
 							</td>
 							<td>{{ tool.tool_manufacture }}</td>
 							<td>{{ tool.location }}</td>
+							<td><b>{{tool.owner.extendedprofile.zipcode}}</b></td>
+							<td><b>{{tool.owner}}</b></td>
 							<td><div style="background: rgba(0, 0, 0, 0.75); border-radius: 5px; font-weight: bold;">{{ tool.tool_name|colorfy|safe }}</div></td>
 							<td><a class="pure-button" href="{{ SITE_URL }}/tools/addone/{{tool.tool_name|slugify}}/">+</a></td>
 							<td><a class="pure-button" href="{{ SITE_URL }}/tools/minusone/{{tool.tool_name|slugify}}/">-</a></td>

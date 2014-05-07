@@ -85,7 +85,7 @@ def accept(request, key):
 	@param: request (data), id (slugged string)
 	@return: actions
 """
-def reject(request, id):
+def reject(request, key):
 	#request is owner
 	key = int(key) 
 	stack = request.user.extendedprofile.getStack()
