@@ -21,8 +21,11 @@ from django.forms import ModelForm
 from django.template import RequestContext
 from toolmanager.models import Tool
 from toolmanager.forms import ToolForm
+from requestreturn.models import Request, RequestForm
 from django.forms.models import modelformset_factory
+from django.forms.models import modelform_factory
 from django.contrib.auth import get_user_model
+
 
 
 def home(request):
@@ -94,6 +97,12 @@ def add(request):
 # Then redirects to browser page. Requires membership
 #
 """
+
+### WARNING!
+### Request is a form object.
+### request is a native object to Django web queries!
+###
+### THEY ARE NOT THE SAME!
 def checkoutItem(request, tool):
 	unslug = tool.replace('-', ' ')
 	t  = Tool.objects.get(tool_name__iexact=unslug)
@@ -108,6 +117,19 @@ def checkoutItem(request, tool):
 
 		#let's fetch their json list.
 		d = request.user.extendedprofile.getList()
+
+		# now we create a request
+		request_form = RequestForm(instance = t)
+		
+
+		if request.method == 'POST':
+			form = request_form(request.POST)
+			form.save()
+
+		else:
+			return render_to_response('tools/request.html', {"form":request_form}, context_instance = RequestContext(request))
+
+
 		
 		if type(d) is dict: # not empty dictionary!
 

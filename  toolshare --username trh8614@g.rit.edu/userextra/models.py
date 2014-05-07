@@ -15,10 +15,12 @@ import json # we use this to package to sql3
 
 """
 class ExtendedProfile(models.Model):
-    INVENTORY_LIMIT = 9999
+    INVENTORY_LIMIT = 99999
+    STACK_LIMIT = 99999
     user = models.OneToOneField(User, unique=True)
     zipcode = models.CharField(max_length=10, blank=True)
     inventory = models.CharField(max_length=INVENTORY_LIMIT, editable=False) #dataslot for json!
+    stack = models.CharField(max_length=INVENTORY_LIMIT, editable=False) #dataslot for json!
 
     """
         storeList
@@ -52,6 +54,25 @@ class ExtendedProfile(models.Model):
             return ""
         else:
             return json.loads(self.inventory)
+
+    # as above, except for stack
+    def storeStack( self, data):
+        d = json.dumps(data)
+        if len(d) > self.STACK_LIMIT :
+            raise Exception("Current user stack data over MySQL field limit. Increase limit constant")
+            return False
+        else:
+            self.stack = d
+    # as above, except for stack
+    def getStack( self ):
+        if self.stack == "": #no data, fresh stack.
+            return ""
+        else:
+            return json.loads(self.stack)
+
+    def emptyStack( self ):
+        if self.stack == "": #no data, fresh stack.
+            return True
 
     REQUIRED_FIELDS = ['zipcode']
 
