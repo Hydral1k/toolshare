@@ -13,5 +13,3 @@ from django.forms.models import modelformset_factory
 from django.contrib.auth import get_user_model
 
 # Create your views here.
-
-def

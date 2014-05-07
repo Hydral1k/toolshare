@@ -46,6 +46,9 @@ class Tool(models.Model):
 	# MAY BE SCRAPPED R2 REFACTOR
 	def getimgname():
 		return slugify(self.tool_name.lower())
+
+	def __str__(self):
+		return str(self.tool_name)
 			
 
 

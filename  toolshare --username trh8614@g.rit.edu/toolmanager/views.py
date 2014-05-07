@@ -27,6 +27,29 @@ from django.forms.models import modelform_factory
 from django.contrib.auth import get_user_model
 
 
+def StackFactory( u, requestorreturn):
+	print("Tehe")
+
+	# this user has nothing in his stack
+	# let's add to his collection!
+	if u.extendedprofile.emptyStack():
+
+		stack = []
+		stack.append(requestorreturn.pk)
+
+		u.extendedprofile.storeStack(stack)
+		u.extendedprofile.save()
+
+	# user has items in his stack
+	# let's accomidate to his pile and add request to top.
+	else: 
+
+		stack = u.extendedprofile.getStack()
+		stack.append(requestorreturn.pk)
+
+		u.extendedprofile.storeStack(stack)
+		u.extendedprofile.save()
+
 
 def home(request):
 	return render_to_response('tools/index.html', {
@@ -117,14 +140,24 @@ def checkoutItem(request, tool):
 
 		#let's fetch their json list.
 		d = request.user.extendedprofile.getList()
-
 		# now we create a request
-		request_form = RequestForm(instance = t)
-		
+		request_form = RequestForm(
+				initial={'owner': t.owner, 'tool' : t, 'user' : request.user}
+		)
+		request_form.fields['owner'].widget.attrs['readonly'] = True # text input
+		request_form.fields['tool'].widget.attrs['readonly'] = True # text input
+		request_form.fields['user'].widget.attrs['readonly'] = True # text input
 
-		if request.method == 'POST':
-			form = request_form(request.POST)
-			form.save()
+		if request.method == 'POST': #looks like the user is trying to save a new tool!
+			if request_form.is_valid():
+				rr = Request( owner=request_form.cleaned_data["owner"], user=request_form.cleaned_data["user"], 
+					tool=request_form.cleaned_data["tool"], daterequest=request_form.cleaned_data["daterequest"], 
+					timerequest=request_form.cleaned_data["timerequest"], datereturn=request_form.cleaned_data["datereturn"],
+					timereturn=request_form.cleaned_data["timereturn"])
+				rr.save()
+				StackFactory( request.user, rr )
+
+				
 
 		else:
 			return render_to_response('tools/request.html', {"form":request_form}, context_instance = RequestContext(request))
@@ -148,7 +181,6 @@ def checkoutItem(request, tool):
 		request.user.extendedprofile.save()
 		t.checkoutItem()
 		t.save()
-
 		d = dict( tool_list = Tool.objects.all() )
 		return redirect('toolmanager.browse')
 	
