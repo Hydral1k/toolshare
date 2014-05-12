@@ -166,7 +166,7 @@ def checkoutItem(request, tool):
 					comment=request_form.cleaned_data["comment"],
 					ownerconfirm=False)
 				rr.save()
-				StackFactory( request.user, rr )
+				StackFactory( rr.owner, rr )
 			else:
 				return render_to_response('tools/request.html', {"form":request_form}, context_instance = RequestContext(request))
 		else:
